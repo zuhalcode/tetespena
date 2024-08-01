@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const Blog = () => {
   return (
-    <div className="w-full px-7 py-5">
+    <div className="px-7 py-5">
       <div className="w-full rounded-xl bg-blue-50 px-2 pt-3">
         <div className="w-1/4 space-y-1 p-5">
           <h1 className="text-2xl font-semibold text-slate-700">Blog App</h1>

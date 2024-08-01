@@ -1,5 +1,20 @@
+import { UserForm } from "@/components/dashboard/user-form";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+
+import { ImagePlus } from "lucide-react";
 import { Metadata } from "next";
+import Image from "next/image";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -7,17 +22,7 @@ export const metadata: Metadata = {
 };
 
 const Dashboard = () => {
-  return (
-    <div className="w-full px-8 py-5 text-white">
-      <div className="flex gap-5">
-        <div className="h-24 w-24 rounded-full bg-white" />
-        <div className="flex flex-col gap-3">
-          <Button>Ubah</Button>
-          <Button>Hapus</Button>
-        </div>
-      </div>
-    </div>
-  );
+  return <div className="w-full space-y-8 p-16 text-white">Dashboard</div>;
 };
 
 export default Dashboard;

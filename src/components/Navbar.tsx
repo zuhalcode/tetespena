@@ -4,7 +4,6 @@ import { LayoutGrid, Search } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import Link from "next/link";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 
 const Navbar = () => {
