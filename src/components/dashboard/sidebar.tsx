@@ -1,8 +1,58 @@
-import { Home, Newspaper, UserRoundPen } from "lucide-react";
+import { Newspaper, UserRoundPen } from "lucide-react";
 import Link from "next/link";
 
 import SidebarButton from "../ui/sidebar/sidebar-button";
 import Image from "next/image";
+import { ReactNode } from "react";
+
+type MenuProps = {
+  name: string;
+  href?: string;
+  icon?: ReactNode;
+  children?: MenuProps[];
+};
+
+const menu: MenuProps[] = [
+  {
+    name: "profile",
+    href: "/dashboard/profile",
+    icon: <UserRoundPen className="h-4 w-4" />,
+    children: [
+      {
+        name: "general",
+        href: "/dashboard/profile",
+      },
+      {
+        name: "picture",
+        href: "/dashboard/profile/picture",
+      },
+      {
+        name: "password",
+        href: "/dashboard/profile/password",
+      },
+      {
+        name: "socials",
+        href: "/dashboard/profile/socials",
+      },
+    ],
+  },
+  {
+    name: "blog",
+    href: "/dashboard/blog",
+    icon: <Newspaper className="h-4 w-4" />,
+  },
+];
+
+const renderMenuItems = (items: MenuProps[]) => {
+  return items.map((item) => (
+    <div key={item.name}>
+      <SidebarButton icon={item.icon} text={item.name} href={item.href} />
+      {item.children && (
+        <div className="ml-4">{renderMenuItems(item.children)}</div>
+      )}
+    </div>
+  ));
+};
 
 export function Sidebar() {
   return (
@@ -25,16 +75,7 @@ export function Sidebar() {
       </div>
 
       <nav className="grid items-start px-2 text-sm font-medium">
-        <SidebarButton
-          icon={<UserRoundPen className="h-4 w-4" />}
-          text="Profile"
-          href="/dashboard/profile"
-        />
-        <SidebarButton
-          icon={<Newspaper className="h-4 w-4" />}
-          text="Blog"
-          href="/dashboard/blog"
-        />
+        {renderMenuItems(menu)}
       </nav>
     </div>
   );

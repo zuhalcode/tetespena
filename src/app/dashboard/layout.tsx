@@ -1,10 +1,16 @@
 import { Sidebar } from "@/components/dashboard/sidebar";
+import { auth } from "@clerk/nextjs/server";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-export default function RootLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { userId } = auth();
+  if (!userId) redirect("/");
+
   return (
     <div className="flex bg-[#1F2937]">
       <div className="w-3/12">

@@ -1,6 +1,13 @@
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
 
 const poppins = Poppins({
   subsets: ["latin"],
