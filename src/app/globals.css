@@ -89,3 +89,68 @@
   width: 0;
   height: 0;
 }
+
+/* Basic Tiptap editor styles */
+.tiptap > :first-child {
+  @apply mt-0; /* Remove margin-top for the first child */
+}
+
+.tiptap pre {
+  @apply my-6 rounded-lg bg-black p-3 font-mono text-white; /* Tailwind classes for pre styles */
+}
+
+.tiptap pre code {
+  @apply bg-transparent p-0 text-xs text-inherit; /* Tailwind classes for code styles */
+}
+
+/* Heading styles */
+.tiptap h1,
+.tiptap h2,
+.tiptap h3,
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+  @apply mt-10 text-pretty leading-5; /* Apply margin-top, custom text color, and line height */
+}
+
+.tiptap h1,
+.tiptap h2 {
+  @apply mb-6 mt-14; /* Apply bottom margin and additional top margin for h1 and h2 */
+}
+
+.tiptap h1 {
+  @apply text-[1.4rem]; /* Set font size for h1 */
+}
+
+.tiptap h2 {
+  @apply text-[1.2rem]; /* Set font size for h2 */
+}
+
+.tiptap h3 {
+  @apply text-[1.1rem]; /* Set font size for h3 */
+}
+
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+  @apply text-base; /* Set base text size for h4, h5, and h6 */
+}
+
+.tiptap blockquote {
+  @apply my-6 border-l-4 border-slate-500 pl-4; /* Apply margins, border, and padding for blockquotes */
+}
+
+/* List styles for ul (bulleted) and ol (numbered) */
+.tiptap ul {
+  @apply my-5 list-disc pl-4 pr-4; /* Apply margins and list styles for unordered lists */
+}
+
+.tiptap ol {
+  @apply my-5 list-decimal pl-4 pr-4; /* Apply margins and list styles for ordered lists */
+}
+
+/* Styles for list item paragraphs */
+.tiptap ul li p,
+.tiptap ol li p {
+  @apply mb-[0.25em] mt-[0.25em]; /* Apply margins for paragraphs within list items */
+}

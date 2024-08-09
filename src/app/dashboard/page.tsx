@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs/server";
 import { Metadata } from "next";
 import React from "react";
 

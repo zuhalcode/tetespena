@@ -1,7 +1,7 @@
+import ProfileBar from "@/components/dashboard/profile-bar";
 import { Sidebar } from "@/components/dashboard/sidebar";
 import { auth } from "@clerk/nextjs/server";
-import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 
 export default function DashboardLayout({
   children,
@@ -16,7 +16,10 @@ export default function DashboardLayout({
       <div className="w-3/12">
         <Sidebar />
       </div>
-      <div className="h-screen w-full overflow-y-scroll">{children}</div>
+      <div className="h-screen w-full overflow-y-scroll">
+        <ProfileBar />
+        {children}
+      </div>
     </div>
   );
 }

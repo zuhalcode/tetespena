@@ -5,18 +5,23 @@ import SidebarButton from "../ui/sidebar/sidebar-button";
 import Image from "next/image";
 import { ReactNode } from "react";
 
+type SubmenuProps = {
+  name: string;
+  href: string;
+};
+
 type MenuProps = {
   name: string;
   href?: string;
   icon?: ReactNode;
-  children?: MenuProps[];
+  children?: SubmenuProps[];
 };
 
-const menu: MenuProps[] = [
+const menus: MenuProps[] = [
   {
     name: "profile",
     href: "/dashboard/profile",
-    icon: <UserRoundPen className="h-4 w-4" />,
+    icon: <UserRoundPen className="h-5 w-5" />,
     children: [
       {
         name: "general",
@@ -37,22 +42,25 @@ const menu: MenuProps[] = [
     ],
   },
   {
-    name: "blog",
-    href: "/dashboard/blog",
-    icon: <Newspaper className="h-4 w-4" />,
+    name: "article",
+    href: "/dashboard/article",
+    icon: <Newspaper className="h-5 w-5" />,
+    children: [
+      {
+        name: "published",
+        href: "/dashboard/article",
+      },
+      {
+        name: "pending",
+        href: "/dashboard/article/pending",
+      },
+      {
+        name: "draft",
+        href: "/dashboard/article/draft",
+      },
+    ],
   },
 ];
-
-const renderMenuItems = (items: MenuProps[]) => {
-  return items.map((item) => (
-    <div key={item.name}>
-      <SidebarButton icon={item.icon} text={item.name} href={item.href} />
-      {item.children && (
-        <div className="ml-4">{renderMenuItems(item.children)}</div>
-      )}
-    </div>
-  ));
-};
 
 export function Sidebar() {
   return (
@@ -74,8 +82,17 @@ export function Sidebar() {
         </Link>
       </div>
 
-      <nav className="grid items-start px-2 text-sm font-medium">
-        {renderMenuItems(menu)}
+      <nav className="items-start px-2 text-sm font-medium">
+        {menus.map((menu) => (
+          <div key={menu.name}>
+            <SidebarButton
+              icon={menu.icon}
+              text={menu.name}
+              href={menu.href}
+              submenu={menu.children}
+            />
+          </div>
+        ))}
       </nav>
     </div>
   );
