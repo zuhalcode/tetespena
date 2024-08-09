@@ -29,29 +29,30 @@ import {
 import ToolbarButton from "@/components/submission/toolbar-button";
 import { useCallback } from "react";
 import { ToolbarHeading } from "@/components/submission/toolbar-heading";
+import { Button } from "@/components/ui/button";
 
 const Submission = () => {
   useTitle("Create Article");
 
   // define your extension array
-  // const extensions = [];
+  const extensions = [
+    StarterKit.configure({
+      heading: {
+        levels: [1, 2, 3, 4, 5, 6],
+      },
+    }),
+    TextAlign.configure({
+      types: ["heading", "paragraph"],
+    }),
+    Link,
+    Underline,
+  ];
 
-  // const content =
+  const content: string = "<p>Start type from here ... </p>";
 
   const editor = useEditor({
-    extensions: [
-      StarterKit.configure({
-        heading: {
-          levels: [1, 2, 3, 4, 5, 6],
-        },
-      }),
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
-      Link,
-      Underline,
-    ],
-    content: "<p>Start type from here ... </p>",
+    extensions,
+    content,
     editorProps: {
       attributes: {
         class:
@@ -100,79 +101,79 @@ const Submission = () => {
   const toolbarButtons = [
     {
       title: "Bold",
-      icon: <Bold className="h-6 w-6" />,
+      icon: <Bold />,
       onClick: () => editor?.chain().focus().toggleBold().run(),
       isActive: "bold",
     },
     {
       title: "Italic",
-      icon: <Italic className="h-6 w-6" />,
+      icon: <Italic />,
       onClick: () => editor?.chain().focus().setItalic().run(),
       isActive: "italic",
     },
     {
       title: "Underline",
-      icon: <U className="h-6 w-6" />,
+      icon: <U />,
       onClick: () => editor?.chain().focus().toggleUnderline().run(),
       isActive: "underline",
     },
     {
       title: "Link",
-      icon: <Link2 className="h-6 w-6" />,
+      icon: <Link2 />,
       onClick: setLink,
       isActive: "link",
     },
     {
       title: "Blockquote",
-      icon: <Quote className="h-6 w-6" />,
+      icon: <Quote />,
       onClick: () => editor?.chain().focus().toggleBlockquote().run(),
       isActive: "blockquote",
     },
     {
       title: "Align Left",
-      icon: <AlignLeft className="h-6 w-6" />,
+      icon: <AlignLeft />,
       onClick: () => editor?.chain().focus().setTextAlign("left").run(),
-      isActive: "left",
+      isActive: { textAlign: "left" },
     },
     {
       title: "Align Center",
-      icon: <AlignCenter className="h-6 w-6" />,
+      icon: <AlignCenter />,
       onClick: () => editor?.chain().focus().setTextAlign("center").run(),
-      isActive: "center",
+      isActive: { textAlign: "center" },
     },
     {
       title: "Align Right",
-      icon: <AlignRight className="h-6 w-6" />,
+      icon: <AlignRight />,
       onClick: () => editor?.chain().focus().setTextAlign("right").run(),
-      isActive: "right",
+      isActive: { textAlign: "right" },
     },
     {
       title: "Justify",
-      icon: <AlignJustify className="h-6 w-6" />,
+      icon: <AlignJustify />,
       onClick: () => editor?.chain().focus().setTextAlign("justify").run(),
-      isActive: "justify",
+      isActive: { textAlign: "justify" },
     },
     {
       title: "Bullet List",
-      icon: <List className="h-6 w-6" />,
+      icon: <List />,
       onClick: () => editor?.chain().focus().toggleBulletList().run(),
       isActive: "bulletList",
     },
     {
       title: "Ordered List",
-      icon: <ListOrdered className="h-6 w-6" />,
+      icon: <ListOrdered />,
       onClick: () => editor?.chain().focus().toggleOrderedList().run(),
       isActive: "orderedList",
     },
     {
       title: "Code",
-      icon: <Code className="h-6 w-6" />,
+      icon: <Code />,
       onClick: () => editor?.chain().focus().toggleCode().run(),
       isActive: "code",
     },
     {
       title: "Code Block",
-      icon: <CodeXml className="h-6 w-6" />,
+      icon: <CodeXml />,
       onClick: () => editor?.chain().focus().toggleCodeBlock().run(),
       isActive: "codeBlock",
     },
@@ -180,12 +181,13 @@ const Submission = () => {
 
   return (
     <div className="flex bg-[#1d2633]">
-      <div className="h-[200vh] w-full">
+      <div className="min-h-screen w-full">
         <div className="fixed z-10 w-full bg-[#1d2633]">
           <ProfileBar useLogo={true} />
           <div className={`z-10 w-full bg-[#253142] py-8`}>
             <div className="flex gap-3 px-12">
               <ToolbarHeading editor={editor} />
+
               {toolbarButtons.map((btn, i) => (
                 <ToolbarButton
                   title={btn.title}
@@ -220,6 +222,15 @@ const Submission = () => {
             </div>
           </BubbleMenu> */}
           <EditorContent editor={editor} />
+        </div>
+
+        <div className="fixed bottom-0 w-full border-t border-t-slate-400 bg-[#1d2633] py-5">
+          <div className="flex w-5/12 gap-3 px-14">
+            <Button className="rounded-xl px-6 py-6 text-base">Publish</Button>
+            <Button className="rounded-xl px-6 py-6 text-base">
+              Save Draft
+            </Button>
+          </div>
         </div>
       </div>
     </div>
