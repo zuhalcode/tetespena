@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* globals.css */
+
+/* For Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3d526e; /* Customize the color as needed */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Customize the hover color as needed */
+}
+
+.scroll-hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Basic Tiptap editor styles */
+.ProseMirror > :first-child {
+  @apply mt-0; /* Remove margin-top for the first child */
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror p.is-empty::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror pre {
+  @apply my-6 rounded-lg bg-black p-3 font-mono text-white; /* Tailwind classes for pre styles */
+}
+
+.ProseMirror pre code {
+  @apply bg-transparent p-0 text-xs text-inherit; /* Tailwind classes for code styles */
+}
+
+/* Heading styles */
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  @apply mt-10 text-pretty leading-5 text-[#002050]; /* Apply margin-top, custom text color, and line height */
+}
+
+.ProseMirror h1,
+.ProseMirror h2 {
+  @apply mb-6 mt-14; /* Apply bottom margin and additional top margin for h1 and h2 */
+}
+
+.ProseMirror h1 {
+  @apply text-3xl lg:text-4xl;
+}
+
+.ProseMirror h2 {
+  @apply text-2xl lg:text-3xl;
+}
+
+.ProseMirror h3 {
+  @apply text-xl lg:text-2xl;
+}
+
+.ProseMirror h4 {
+  @apply text-lg lg:text-xl;
+}
+
+.ProseMirror h5 {
+  @apply text-base lg:text-lg;
+}
+
+.ProseMirror h6 {
+  @apply text-sm lg:text-base;
+}
+
+.ProseMirror p {
+  @apply text-justify text-base leading-loose md:text-lg;
+}
+
+.ProseMirror blockquote {
+  @apply my-6 border-l-4 border-slate-500 pl-4; /* Apply margins, border, and padding for blockquotes */
+}
+
+/* List styles for ul (bulleted) and ol (numbered) */
+.ProseMirror ul {
+  @apply mx-10 my-5 list-disc; /* Apply margins and list styles for unordered lists */
+}
+
+.ProseMirror ol {
+  @apply mx-10 my-5 list-decimal; /* Apply margins and list styles for ordered lists */
+}
+
+/* Styles for list item paragraphs */
+.ProseMirror ul li p,
+.ProseMirror ol li p {
+  @apply mb-[0.25em] mt-[0.25em]; /* Apply margins for paragraphs within list items */
+}
+
+/* Text alignment styles */
+.ProseMirror .text-left {
+  text-align: left; /* Align text to the left */
+}
+
+.ProseMirror .text-center {
+  text-align: center; /* Align text to the center */
+}
+
+.ProseMirror .text-right {
+  text-align: right; /* Align text to the right */
+}
+
+/* Optional: Apply default alignment styles */
+.ProseMirror p,
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6,
+.ProseMirror blockquote {
+  text-align: left; /* Default alignment to the left */
+}
+
+/* Add classes to toggle alignment */
+.ProseMirror p.text-center,
+.ProseMirror h1.text-center,
+.ProseMirror h2.text-center,
+.ProseMirror h3.text-center,
+.ProseMirror h4.text-center,
+.ProseMirror h5.text-center,
+.ProseMirror h6.text-center,
+.ProseMirror blockquote.text-center {
+  text-align: center; /* Center align if class is applied */
+}
+
+.ProseMirror p.text-right,
+.ProseMirror h1.text-right,
+.ProseMirror h2.text-right,
+.ProseMirror h3.text-right,
+.ProseMirror h4.text-right,
+.ProseMirror h5.text-right,
+.ProseMirror h6.text-right,
+.ProseMirror blockquote.text-right {
+  text-align: right; /* Right align if class is applied */
+}

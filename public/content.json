@@ -1,0 +1,322 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": "left",
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "AI-Generated Art: A New Frontier"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Artificial intelligence has introduced a fresh perspective to artistic creation. Algorithms, trained on vast datasets of art and styles, are now capable of producing original artworks that blend the essence of human creativity with the precision of machine logic."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": "left",
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Collaborative Creativity"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "AI’s potential in art constructions is not about replacing artists but augmenting their capabilities. The collaboration between human artists and AI is an emerging trend, with creative duos exploring uncharted territory."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": "left",
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Expanding Horizons"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "AI in art constructions is not limited to painting and sculpture; it extends into various domains."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": "left",
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Architectural Marvels"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "AI algorithms are revolutionizing architectural design, enabling architects to create structures that are not only aesthetically pleasing but also environmentally sustainable. This fusion of art and engineering is changing the way we build and inhabit spaces."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": "center",
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Landscape Transformations"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "In the realm of landscaping, AI is enhancing urban planning by optimizing green spaces and landscapes. The result is harmonious, eco-friendly cityscapes that cater to the well-being of residents."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": "left",
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Musical Innovation"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "AI’s influence extends to music composition, giving birth to entirely new genres and styles. Composers and musicians are collaborating with AI systems to explore avant-garde soundscapes."
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": null
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "The Path Ahead"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": null
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "AI in art constructions holds immense potential, but it also raises questions about authenticity and creativity."
+        }
+      ]
+    },
+    {
+      "type": "orderedList",
+      "attrs": {
+        "start": 1
+      },
+      "content": [
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": "left"
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "AI as an Artistic Tool."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": "left"
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Challenges and Controversies."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "listItem",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": "left"
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Ethical Considerations."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "textAlign": "left",
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "text": "Conclusion"
+        }
+      ]
+    },
+    {
+      "type": "codeBlock",
+      "attrs": {
+        "language": null
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "\"use client\";\n\nimport { AvatarFallback, AvatarImage } from \"@/components/ui/avatar\";\nimport { Avatar } from \"@radix-ui/react-avatar\";\n\nimport StarterKit from \"@tiptap/starter-kit\";\nimport Image from \"next/image\";\n\nimport React, { useEffect, useState } from \"react\";\nimport { EditorContent, useEditor } from \"@tiptap/react\";\n\nconst Page = () => {\n  const jsonContent = {\n    type: \"doc\",\n    content: [\n      {\n        type: \"heading\",\n        attrs: {\n          textAlign: \"left\",\n          level: 3,\n        },\n        content: [\n          {\n            type: \"text\",\n            marks: [\n              {\n                type: \"bold\",\n              },\n            ],\n            text: \"AI-Generated Art: A New Frontier\",\n          },\n        ],\n      },\n      {\n        type: \"paragraph\",\n        attrs: {\n          textAlign: \"left\",\n        },\n        content: [\n          {\n            type: \"text\",\n            text: \"Artificial intelligence has introduced a fresh perspective to artistic creation. Algorithms, trained on vast datasets of art and styles, are now capable of producing original artworks that blend the essence of human creativity with the precision of machine logic.\",\n          },\n        ],\n      },\n      {\n        type: \"heading\",\n        attrs: {\n          textAlign: \"left\",\n          level: 3,\n        },\n        content: [\n          {\n            type: \"text\",\n            marks: [\n              {\n                type: \"bold\",\n              },\n            ],\n            text: \"Collaborative Creativity\",\n          },\n        ],\n      },\n      {\n        type: \"paragraph\",\n        attrs: {\n          textAlign: \"left\",\n        },\n        content: [\n          {\n            type: \"text\",\n            text: \"AI’s potential in art constructions is not about replacing artists but augmenting their capabilities. The collaboration between human artists and AI is an emerging trend, with creative duos exploring uncharted territory.\",\n          },\n        ],\n      },\n      {\n        type: \"heading\",\n        attrs: {\n          textAlign: \"left\",\n          level: 2,\n        },\n        content: [\n          {\n            type: \"text\",\n            marks: [\n              {\n                type: \"bold\",\n              },\n            ],\n            text: \"Expanding Horizons\",\n          },\n        ],\n      },\n      {\n        type: \"paragraph\",\n        attrs: {\n          textAlign: \"left\",\n        },\n        content: [\n          {\n            type: \"text\",\n            text: \"AI in art constructions is not limited to painting and sculpture; it extends into various domains.\",\n          },\n        ],\n      },\n      {\n        type: \"heading\",\n        attrs: {\n          textAlign: \"left\",\n          level: 3,\n        },\n        content: [\n          {\n            type: \"text\",\n            marks: [\n              {\n                type: \"bold\",\n              },\n            ],\n            text: \"Architectural Marvels\",\n          },\n        ],\n      },\n      {\n        type: \"paragraph\",\n        attrs: {\n          textAlign: \"left\",\n        },\n        content: [\n          {\n            type: \"text\",\n            text: \"AI algorithms are revolutionizing architectural design, enabling architects to create structures that are not only aesthetically pleasing but also environmentally sustainable. This fusion of art and engineering is changing the way we build and inhabit spaces.\",\n          },\n        ],\n      },\n      {\n        type: \"heading\",\n        attrs: {\n          textAlign: \"left\",\n          level: 3,\n        },\n        content: [\n          {\n            type: \"text\",\n            marks: [\n              {\n                type: \"bold\",\n              },\n            ],\n            text: \"Landscape Transformations\",\n          },\n        ],\n      },\n      {\n        type: \"paragraph\",\n        attrs: {\n          textAlign: \"left\",\n        },\n        content: [\n          {\n            type: \"text\",\n            text: \"In the realm of landscaping, AI is enhancing urban planning by optimizing green spaces and landscapes. The result is harmonious, eco-friendly cityscapes that cater to the well-being of residents.\",\n          },\n        ],\n      },\n      {\n        type: \"heading\",\n        attrs: {\n          textAlign: \"left\",\n          level: 3,\n        },\n        content: [\n          {\n            type: \"text\",\n            marks: [\n              {\n                type: \"bold\",\n              },\n            ],\n            text: \"Musical Innovation\",\n          },\n        ],\n      },\n      {\n        type: \"paragraph\",\n        attrs: {\n          textAlign: \"left\",\n        },\n        content: [\n          {\n            type: \"text\",\n            text: \"AI’s influence extends to music composition, giving birth to entirely new genres and styles. Composers and musicians are collaborating with AI systems to explore avant-garde soundscapes.\",\n          },\n        ],\n      },\n      {\n        type: \"heading\",\n        attrs: {\n          textAlign: \"left\",\n          level: 2,\n        },\n        content: [\n          {\n            type: \"text\",\n            marks: [\n              {\n                type: \"bold\",\n              },\n            ],\n            text: \"The Path Ahead\",\n          },\n        ],\n      },\n      {\n        type: \"paragraph\",\n        attrs: {\n          textAlign: \"left\",\n        },\n        content: [\n          {\n            type: \"text\",\n            text: \"AI in art constructions holds immense potential, but it also raises questions about authenticity and creativity.\",\n          },\n        ],\n      },\n      {\n        type: \"orderedList\",\n        attrs: {\n          start: 1,\n        },\n        content: [\n          {\n            type: \"listItem\",\n            content: [\n              {\n                type: \"paragraph\",\n                attrs: {\n                  textAlign: \"left\",\n                },\n                content: [\n                  {\n                    type: \"text\",\n                    text: \"AI as an Artistic Tool.\",\n                  },\n                ],\n              },\n            ],\n          },\n          {\n            type: \"listItem\",\n            content: [\n              {\n                type: \"paragraph\",\n                attrs: {\n                  textAlign: \"left\",\n                },\n                content: [\n                  {\n                    type: \"text\",\n                    text: \"Challenges and Controversies.\",\n                  },\n                ],\n              },\n            ],\n          },\n          {\n            type: \"listItem\",\n            content: [\n              {\n                type: \"paragraph\",\n                attrs: {\n                  textAlign: \"left\",\n                },\n                content: [\n                  {\n                    type: \"text\",\n                    text: \"Ethical Considerations.\",\n                  },\n                ],\n              },\n            ],\n          },\n        ],\n      },\n      {\n        type: \"heading\",\n        attrs: {\n          textAlign: \"left\",\n          level: 2,\n        },\n        content: [\n          {\n            type: \"text\",\n            marks: [\n              {\n                type: \"bold\",\n              },\n            ],\n            text: \"Conclusion\",\n          },\n        ],\n      },\n      {\n        type: \"paragraph\",\n        attrs: {\n          textAlign: \"left\",\n        },\n        content: [\n          {\n            type: \"text\",\n            text: \"In conclusion, AI’s integration into art constructions offers exciting possibilities for the creative world. Collaborative endeavors and innovative uses of AI are poised to reshape art, architecture, and music, opening up uncharted territories for human-AI partnerships.\",\n          },\n        ],\n      },\n      {\n        type: \"paragraph\",\n        attrs: {\n          textAlign: \"left\",\n        },\n        content: [\n          {\n            type: \"text\",\n            text: \"As we navigate this path, it is crucial to strike a balance between the ethical considerations and the untapped potential of AI in art, ensuring a harmonious coexistence between human and machine art.\",\n          },\n        ],\n      },\n    ],\n  };\n\n  const TiptapRenderer = () => {\n    const editor = useEditor({\n      extensions: [StarterKit],\n      content: jsonContent,\n      editable: false, // Set to false for read-only\n    });\n\n    return <EditorContent editor={editor} />;\n  };\n\n  return (\n    <div className=\"mt-48 flex min-h-[200vh] flex-col items-center gap-10 pb-10 sm:mt-32 xl:mt-52\">\n      {/* Image Cover */}\n      <div className=\"mt-1 w-11/12\">\n        <Image\n          src=\"/images/landscape.jpg\"\n          width={100}\n          height={100}\n          layout=\"responsive\"\n          alt=\"Picture of the author\"\n          className=\"rounded-xl shadow-[5px_10px_20px_rgba(0,0,0,0.3)]\"\n        />\n      </div>\n      {/* Image Cover */}\n\n      {/* Articles */}\n      <div className=\"mx-auto w-8/12\">\n        <TiptapRenderer />\n      </div>\n      {/* Articles */}\n    </div>\n  );\n};\n\nexport default Page;"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "In conclusion, AI’s integration into art constructions offers exciting possibilities for the creative world. Collaborative endeavors and innovative uses of AI are poised to reshape art, architecture, and music, opening up uncharted territories for human-AI partnerships."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "left"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "As we navigate this path, it is crucial to strike a balance between the ethical considerations and the untapped potential of AI in art, ensuring a harmonious coexistence between human and machine art."
+        }
+      ]
+    }
+  ]
+}
