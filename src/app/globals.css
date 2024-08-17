@@ -131,7 +131,7 @@
 .ProseMirror h4,
 .ProseMirror h5,
 .ProseMirror h6 {
-  @apply mt-10 text-pretty leading-5 text-[#002050]; /* Apply margin-top, custom text color, and line height */
+  @apply mt-10 text-pretty leading-5 text-white; /* Apply margin-top, custom text color, and line height */
 }
 
 .ProseMirror h1,
@@ -232,4 +232,13 @@
 .ProseMirror h6.text-right,
 .ProseMirror blockquote.text-right {
   text-align: right; /* Right align if class is applied */
+}
+
+.tiptap-output .ProseMirror h1,
+.tiptap-output .ProseMirror h2,
+.tiptap-output .ProseMirror h3,
+.tiptap-output .ProseMirror h4,
+.tiptap-output .ProseMirror h5,
+.tiptap-output .ProseMirror h6 {
+  @apply mt-10 text-pretty leading-5 text-[#002050]; /* Apply margin-top, custom text color, and line height */
 }

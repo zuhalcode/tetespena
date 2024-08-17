@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 // Internal Imports
 import { Button } from "./ui/button";
 import Drawer from "./drawer";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const pathname = usePathname(); // Get the current pathname
@@ -19,6 +20,8 @@ const Navbar = () => {
 
   const [isFixed, setIsFixed] = useState(false);
   const { isSignedIn } = useUser();
+
+  const handleToast = () => toast("anjayy");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,18 +45,17 @@ const Navbar = () => {
         <p className="hidden xl:block">Quick Search ...</p>
       </div>
       <div className="flex items-center">
-        <h1 className="text-center text-2xl font-bold uppercase">
-          <div className="w-32 xl:w-44">
-            <Image
-              src="/images/tetespena.png"
-              width={100}
-              height={100}
-              layout="responsive"
-              alt="Picture of the author"
-            />
-          </div>
-        </h1>
+        <div className="w-32 cursor-pointer xl:w-44" onClick={handleToast}>
+          <Image
+            src="/images/tetespena.png"
+            width={100}
+            height={100}
+            layout="responsive"
+            alt="Picture of the author"
+          />
+        </div>
       </div>
+
       <div className="flex items-center justify-center gap-5">
         <div className="hidden xl:block">
           {isSignedIn ? (

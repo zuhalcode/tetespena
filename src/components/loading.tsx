@@ -2,20 +2,22 @@ import { motion } from "framer-motion";
 import React from "react";
 
 type Props = {
-  size?: "small" | "base" | "large";
+  size?: "xs" | "sm" | "md" | "lg";
 };
 
-const Loading = ({ size = "base" }: Props) => {
+const Loading = ({ size = "sm" }: Props) => {
   const sizeClasses = {
-    small: "h-12 w-12 border-[8px] border-t-[8px]",
-    base: "h-24 w-24 border-[12px] border-t-[12px]",
-    large: "h-36 w-36 border-[16px] border-t-[16px]",
+    xs: "h-6 w-6 border-[4px] border-t-[4px]",
+    sm: "h-12 w-12 border-[8px] border-t-[8px]",
+    md: "h-24 w-24 border-[12px] border-t-[12px]",
+    lg: "h-36 w-36 border-[16px] border-t-[16px]",
   };
 
   const sizeBoxes = {
-    small: "h-12 w-12",
-    base: "h-24 w-24",
-    large: "h-36 w-36",
+    xs: "h-6 w-6",
+    sm: "h-12 w-12",
+    md: "h-24 w-24",
+    lg: "h-36 w-36",
   };
 
   return (

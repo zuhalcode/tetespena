@@ -25,7 +25,7 @@ export default function Home() {
           <div className="order-2 flex w-full flex-col gap-14 px-5 pt-10 md:order-1 md:pl-16 xl:row-start-1 xl:p-10">
             <div className="flex flex-col items-center justify-start gap-3 sm:flex-row sm:justify-center md:flex-col md:items-start lg:flex-row lg:justify-start">
               <h1 className="text-justify text-4xl font-medium">Welcome to</h1>
-              <div className="mt-1 w-48">
+              <div className="mt-1 w-48 cursor-pointer">
                 <Image
                   src="/images/tetespena.png"
                   width={100}
@@ -97,7 +97,7 @@ export default function Home() {
         {/* Article List */}
         <div className="flex w-full flex-col items-center justify-center gap-10 px-5 md:px-10 xl:w-7/12 xl:px-0">
           {isLoading ? (
-            <Loading size="large" />
+            <Loading size="lg" />
           ) : (
             data?.map((article: any, i: any) => (
               <ArticleCard

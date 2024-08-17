@@ -16,11 +16,11 @@ import { Article } from "@/types/api/article";
 import { BookOpen } from "lucide-react";
 import { useFetchArticleBySlug } from "@/hooks/useArticles";
 import Loading from "@/components/loading";
+import { useTiptapEditor } from "@/hooks/useTiptapEditor";
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const [article, setArticle] = useState<Article>();
   const [content, setContent] = useState();
-  console.log(article);
 
   useTitle(article?.title || "Home");
 
@@ -37,14 +37,8 @@ const Page = ({ params }: { params: { slug: string } }) => {
     }
   }, [data]);
 
-  const extensions = [StarterKit, Link, Underline, TextAlign, Placeholder];
-
   const TiptapRenderer = () => {
-    const editor = useEditor({
-      extensions,
-      content,
-      editable: false, // Set to false for read-only
-    });
+    const editor = useTiptapEditor(content, false);
 
     return <EditorContent editor={editor} />;
   };

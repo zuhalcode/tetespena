@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import useTitle from "@/hooks/useTitle";
 import { AnimatePresence } from "framer-motion";
 import Navbar from "@/components/navbar";
+import { Toaster } from "@/components/ui/sonner";
 
 // Create a new Query Client at the module scope
 const queryClient = new QueryClient({
@@ -30,6 +31,7 @@ export default function RootLayout({
                 <Navbar />
                 {children}
               </main>
+              <Toaster />
             </body>
           </html>
         </AnimatePresence>
