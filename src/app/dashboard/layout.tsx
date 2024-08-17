@@ -1,7 +1,7 @@
 import ProfileBar from "@/components/dashboard/profile-bar";
 import { Sidebar } from "@/components/dashboard/sidebar";
 import { auth } from "@clerk/nextjs/server";
-import { redirect, usePathname } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default function DashboardLayout({
   children,

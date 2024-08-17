@@ -6,10 +6,9 @@ import { Input } from "@/components/ui/input";
 
 import useTitle from "@/hooks/useTitle";
 import Image from "next/image";
-import Drawer from "@/components/drawer";
-import { useState } from "react";
+
 import { useFetchArticles } from "@/hooks/useArticles";
-import { useDrawerContext } from "./context/drawer-context";
+
 import Loading from "@/components/loading";
 
 export default function Home() {
