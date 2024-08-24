@@ -4,18 +4,26 @@ import { Moon, Plus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-const ProfileBar = () => {
+type Props = {
+  useLogo?: boolean;
+};
+
+const ProfileBar = ({ useLogo = false }: Props) => {
   return (
     <div className="mx-auto h-fit w-full border-b border-b-slate-500 xl:w-11/12">
       <div className="flex w-full items-center justify-between px-3 py-3">
         <div className="mt-1 w-8 sm:w-12">
-          <Image
-            src="/images/tp.png"
-            width={100}
-            height={100}
-            layout="responsive"
-            alt="Picture of the author"
-          />
+          {useLogo && (
+            <Link href="/dashboard">
+              <Image
+                src="/images/tp.png"
+                width={100}
+                height={100}
+                layout="responsive"
+                alt="Picture of the author"
+              />
+            </Link>
+          )}
         </div>
 
         <div className="flex items-center gap-2 pl-7">

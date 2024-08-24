@@ -1,41 +1,43 @@
 "use client";
 
-import StarterKit from "@tiptap/starter-kit";
 import Image from "next/image";
 
 import React, { useEffect, useState } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
-import axios from "axios";
-import TextAlign from "@tiptap/extension-text-align";
-import Link from "@tiptap/extension-link";
-import Underline from "@tiptap/extension-underline";
-import Placeholder from "@tiptap/extension-placeholder";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useTitle from "@/hooks/useTitle";
-import { Article } from "@/types/api/article";
+
 import { BookOpen } from "lucide-react";
 import { useFetchArticleBySlug } from "@/hooks/useArticles";
 import Loading from "@/components/loading";
 import { useTiptapEditor } from "@/hooks/useTiptapEditor";
 
 const Page = ({ params }: { params: { slug: string } }) => {
-  const [article, setArticle] = useState<Article>();
+  const [title, setTitle] = useState<string>();
   const [content, setContent] = useState();
 
-  useTitle(article?.title || "Home");
-
+  useTitle(title || "Home");
   const slug = params?.slug;
 
-  const { data, isLoading } = useFetchArticleBySlug(slug);
+  const { data: article, isLoading } = useFetchArticleBySlug(slug);
 
   useEffect(() => {
-    if (data) {
-      setArticle(data);
+    if (article) {
+      setTitle(article.title);
 
-      const content = data.content;
-      setContent(JSON.parse(content));
+      const content = article.content;
+      setContent(content);
     }
-  }, [data]);
+  }, [article]);
+
+  const createdAtDate = new Date(article?.created_at).toLocaleDateString(
+    "en-GB",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    },
+  );
 
   const TiptapRenderer = () => {
     const editor = useTiptapEditor(content, false);
@@ -72,12 +74,12 @@ const Page = ({ params }: { params: { slug: string } }) => {
                 <div className="items-center gap-1 sm:flex">
                   <span className="text-xs font-medium lg:text-sm">By </span>
                   <span className="w-96 cursor-pointer items-center gap-2 text-xs font-bold text-[#345Afa] transition-colors duration-100 hover:text-[#002050] sm:flex lg:text-sm lg:font-semibold">
-                    Adriana Martins
-                    <span className="mx-1 text-base font-semibold lg:text-lg">
+                    {article?.User.name}
+                    <span className="mx-1 text-base font-semibold text-[#345Afa] lg:text-lg">
                       ~
                     </span>
                     <span className="text-xs font-medium text-slate-500 lg:text-sm">
-                      January 24, 2023
+                      {createdAtDate}
                     </span>
                     <span className="flex items-center gap-1 text-xs font-medium text-slate-500 lg:ml-5 lg:text-sm">
                       <BookOpen className="h-4 w-4" /> <span>5 min read</span>
@@ -92,7 +94,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       {/* Image Cover */}
 
       {/* Articles */}
-      <div className="mx-auto mt-10 w-full px-5 sm:mt-3 md:px-10 lg:px-16 xl:mt-10 xl:w-8/12 xl:px-0">
+      <div className="tiptap-output mx-auto mt-10 w-full px-5 sm:mt-3 md:px-10 lg:px-16 xl:mt-10 xl:w-8/12 xl:px-0">
         {isLoading ? <Loading /> : <TiptapRenderer />}
       </div>
       {/* Articles */}

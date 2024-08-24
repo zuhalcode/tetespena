@@ -6,22 +6,26 @@ import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 
 // Next.js Specific Imports
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // Internal Imports
 import { Button } from "./ui/button";
 import Drawer from "./drawer";
-import { toast } from "sonner";
 
 const Navbar = () => {
   const pathname = usePathname(); // Get the current pathname
-  const isAuthPage = pathname === "/sign-in" || pathname === "/sign-up";
+  const isAuthPage =
+    pathname.startsWith("/sign-in") ||
+    pathname.startsWith("/sign-up") ||
+    pathname.startsWith("/dashboard");
+
+  const router = useRouter();
 
   const [isFixed, setIsFixed] = useState(false);
   const { isSignedIn } = useUser();
 
-  const handleToast = () => toast("anjayy");
+  const handleLogo = () => router.push("/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +49,7 @@ const Navbar = () => {
         <p className="hidden xl:block">Quick Search ...</p>
       </div>
       <div className="flex items-center">
-        <div className="w-32 cursor-pointer xl:w-44" onClick={handleToast}>
+        <div className="w-32 cursor-pointer xl:w-44" onClick={handleLogo}>
           <Image
             src="/images/tetespena.png"
             width={100}

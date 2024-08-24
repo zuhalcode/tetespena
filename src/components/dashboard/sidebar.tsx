@@ -1,4 +1,4 @@
-import { Newspaper, UserRoundPen } from "lucide-react";
+import { Home, Newspaper, UserRoundPen } from "lucide-react";
 import Link from "next/link";
 
 import SidebarButton from "./sidebar-button";
@@ -59,6 +59,11 @@ const menus: MenuProps[] = [
         href: "/dashboard/article/draft",
       },
     ],
+  },
+  {
+    name: "Home",
+    href: "/",
+    icon: <Home className="h-5 w-5" />,
   },
 ];
 

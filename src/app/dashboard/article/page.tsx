@@ -1,3 +1,4 @@
+import { useFetchArticles } from "@/hooks/useArticles";
 import { Metadata } from "next";
 import React from "react";
 

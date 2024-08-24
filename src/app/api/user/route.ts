@@ -15,43 +15,47 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  const { id, emailAddresses, fullName, firstName, lastName } =
+    await req.json();
+
+  const email = emailAddresses[0].emailAddress;
+
   try {
-    const jsonContent = await req.json();
-    const { content, title } = jsonContent;
-    const strContent = JSON.stringify(content);
+    const userExist = await db.user.findFirst({ where: { id } });
 
-    let slug = title
-      .toLowerCase() // Convert to lowercase
-      .trim() // Remove leading and trailing spaces
-      .replace(/[^\w\s]/g, "") // Remove non-word characters (except spaces)
-      .replace(/\s+/g, "-") // Replace spaces with hyphens
-      .replace(/-+/g, "-"); // Replace multiple hyphens with a single hyphen
+    if (userExist)
+      return NextResponse.json({
+        message: "User already exist",
+      });
 
-    // Check if the slug already exists in the database
-    let existingSlug = await db.article.findUnique({
-      where: { slug },
-    });
+    const user = await db.user.create({
+      data: {
+        id,
+        email,
+        name: fullName,
+        firstName,
+        lastName,
+      },
 
-    if (existingSlug) {
-      const timestamp = Date.now();
-      slug = `${slug}-${timestamp}`;
-    }
-
-    const article = await db.article.create({
-      data: { title, content: strContent, slug },
+      select: {
+        name: true,
+        firstName: true,
+        lastName: true,
+        email: false,
+        created_at: true,
+      },
     });
 
     return NextResponse.json({
-      message: "Content saved successfully!",
-      data: article,
+      message: "User saved successfully!",
+      user,
     });
   } catch (error) {
-    console.error("Error saving article:", error); // Log the error for debugging
+    console.error("error");
 
-    // Return error response with appropriate status code and message
     return NextResponse.json(
-      { error: error, message: "Error saving content. Please try again." },
-      { status: 500 }, // Internal Server Error
+      { error: error, message: "Error saving User. Please try again." },
+      { status: 500 },
     );
   }
 }

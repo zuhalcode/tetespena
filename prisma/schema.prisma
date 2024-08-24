@@ -10,31 +10,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
 model User {
-  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name       String    @db.VarChar()
+  id         String    @unique
   email      String    @unique
-  password   String?   @db.VarChar(32)
+  name       String    @db.VarChar()
+  firstName  String    @db.VarChar()
+  lastName   String?   @db.VarChar()
   about      String?
   image      String?   @db.VarChar(255)
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
   delete_at  DateTime?
 
-  // articles Article[]
+  role UserRole @default(USER)
+
+  articles Article[]
 
   @@map("users")
+}
+
+enum ArticleStatus {
+  DRAFT
+  PENDING
+  PUBLISHED
+  ARCHIVED
 }
 
 model Article {
   id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title      String    @db.VarChar(255)
   slug       String    @unique @db.VarChar(255)
-  content    String
+  content    Json
   cover_img  String?   @db.VarChar(255)
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
   delete_at  DateTime?
+
+  status ArticleStatus
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String
 
   @@map("articles")
 }

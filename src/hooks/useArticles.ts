@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/lib/axios";
-import { CreateArticle } from "@/types/client/article";
+import { CreateArticle, UpdateDraftArticle } from "@/types/article";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useFetchArticles = () => {
@@ -12,7 +12,18 @@ export const useFetchArticles = () => {
   });
 };
 
-export const useFetchArticleBySlug = (slug: string) => {
+export const useFetchArticlesByUserId = (userId: string | null | undefined) => {
+  return useQuery({
+    queryFn: async () => {
+      const { data } = await axiosInstance.get(`/api/article/user/${userId}`);
+      return data.data;
+    },
+    queryKey: ["fetch.articles", userId],
+    enabled: !!userId,
+  });
+};
+
+export const useFetchArticleBySlug = (slug: string | string[]) => {
   return useQuery({
     queryFn: async () => {
       const { data } = await axiosInstance.get(`/api/article/${slug}`);
@@ -33,6 +44,23 @@ export const useCreateArticle = ({
   return useMutation<void, Error, CreateArticle>({
     mutationFn: async (data) => {
       const response = await axiosInstance.post("/api/article", data);
+      return response.data;
+    },
+    onSuccess,
+    onError,
+  });
+};
+
+export const useUpdateArticle = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess: () => void;
+  onError: () => void;
+}) => {
+  return useMutation<void, Error, UpdateDraftArticle>({
+    mutationFn: async (data) => {
+      const response = await axiosInstance.put("/api/article", data);
       return response.data;
     },
     onSuccess,

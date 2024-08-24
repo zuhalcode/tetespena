@@ -5,7 +5,7 @@ import ProfileBar from "@/components/dashboard/profile-bar";
 import { EditorContent } from "@tiptap/react";
 
 import ToolbarButton from "@/components/submission/toolbar-button";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ToolbarHeading } from "@/components/submission/toolbar-heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,25 +13,33 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
 import useTitle from "@/hooks/useTitle";
-import { useCreateArticle } from "@/hooks/useArticles";
+import { useFetchArticleBySlug, useUpdateArticle } from "@/hooks/useArticles";
 import Loading from "@/components/loading";
 import { createToolbarButton, useTiptapEditor } from "@/hooks/useTiptapEditor";
 import { useUser } from "@clerk/nextjs";
 
-import { ArticleStatus } from "@prisma/client";
 import ProtectedPage from "@/components/auth/protected-page";
+import { useParams, useRouter } from "next/navigation";
+import { GetServerSideProps } from "next";
+import db from "@/lib/db";
 
 const Page = () => {
   useTitle("Create Article");
 
   const { user } = useUser();
+  const { slug } = useParams();
+  const router = useRouter();
+
+  const { data, isLoading } = useFetchArticleBySlug(slug);
+  const content = data?.content;
 
   const [title, setTitle] = useState<string>("");
   const handleSetTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
-  const editor = useTiptapEditor();
+  const editor = useTiptapEditor(content);
+
   const setLink = useCallback(() => {
     const previousUrl = editor?.getAttributes("link").href;
     const url = window.prompt("URL", previousUrl);
@@ -56,14 +64,12 @@ const Page = () => {
 
   const toolbarButtons = createToolbarButton(editor, setLink);
 
-  const { mutate, isPending } = useCreateArticle({
+  const { mutate, isPending } = useUpdateArticle({
     onSuccess: () => {
       toast("Draft Saved", {
         description: "Your content has been successfully saved.",
         duration: 1500,
       });
-      setTitle("");
-      editor?.commands.setContent("");
     },
     onError: () => {
       toast("Error", {
@@ -74,11 +80,26 @@ const Page = () => {
 
   const handleDraftContent = async () => {
     const content = editor?.getJSON()!;
+    const id = data?.id;
     const userId = user?.id!;
-    const status: ArticleStatus = "DRAFT";
 
-    mutate({ content, title, userId, status });
+    mutate({ content, title, id, userId });
   };
+
+  useEffect(() => {
+    if (editor && data) {
+      editor.commands.setContent(data.content);
+      setTitle(data.title);
+    }
+  }, [editor, data]);
+
+  useEffect(() => {
+    if (!isLoading && data) {
+      if (data.userId !== user?.id) {
+        router.push("/dashboard");
+      }
+    }
+  }, [data, isLoading, router, user]);
 
   return (
     <ProtectedPage>

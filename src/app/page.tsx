@@ -2,7 +2,6 @@
 
 import ArticleCard from "@/components/home/ArticleCard";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 import useTitle from "@/hooks/useTitle";
 import Image from "next/image";
@@ -10,11 +9,32 @@ import Image from "next/image";
 import { useFetchArticles } from "@/hooks/useArticles";
 
 import Loading from "@/components/loading";
+import { motion } from "framer-motion";
+import useSaveUserData from "@/hooks/useUser";
+import Link from "next/link";
 
 export default function Home() {
   useTitle("Home");
+  useSaveUserData();
 
   const { data, isLoading } = useFetchArticles();
+
+  const getFirstParagraph = (article: any) => {
+    if (article) {
+      const doc = article.content;
+      const contents = doc.content;
+
+      for (const node of contents) {
+        if (node.type === "paragraph" && Array.isArray(node.content)) {
+          return node.content
+            .map((textNode: { text: string }) => textNode.text)
+            .join("");
+        }
+      }
+    }
+
+    return null; // Jika tidak ditemukan paragraph
+  };
 
   return (
     <>
@@ -25,7 +45,7 @@ export default function Home() {
           <div className="order-2 flex w-full flex-col gap-14 px-5 pt-10 md:order-1 md:pl-16 xl:row-start-1 xl:p-10">
             <div className="flex flex-col items-center justify-start gap-3 sm:flex-row sm:justify-center md:flex-col md:items-start lg:flex-row lg:justify-start">
               <h1 className="text-justify text-4xl font-medium">Welcome to</h1>
-              <div className="mt-1 w-48 cursor-pointer">
+              <div className="mt-1 w-48">
                 <Image
                   src="/images/tetespena.png"
                   width={100}
@@ -36,24 +56,27 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-justify text-base font-normal leading-loose tracking-normal xl:max-w-lg xl:text-start">
-              I’m a design technologist in Atlanta. I like working on the
-              front-end of the web. This is my site, Zento where I blog, share
-              and write tutorials…
+            <p className="text-justify text-base font-normal leading-loose tracking-normal xl:max-w-lg">
+              A space to share and inspire. Easily craft and publish impactful
+              articles with our intuitive tools. Join us today and let your
+              words make a difference.
             </p>
 
-            <div className="">
-              <p className="font-medium">Let&apos;s connect</p>
-              <div className="flex w-full max-w-lg items-center space-x-2 sm:max-w-full">
-                <Input type="email" placeholder="Email" />
-                <Button type="submit">Get Started</Button>
-              </div>
+            <div>
+              <Link
+                href="submission"
+                className="flex w-full items-center space-x-2 bg-red-400 sm:max-w-full xl:max-w-lg"
+              >
+                <Button type="button" className="w-full uppercase">
+                  Start Write
+                </Button>
+              </Link>
             </div>
           </div>
           {/* Content 1 */}
 
           {/* Content 2 with Image */}
-          <div className="order-1 flex w-full items-center justify-center md:order-2">
+          <motion.div className="order-1 flex w-full items-center justify-center md:order-2">
             <div className="w-40 sm:w-64 lg:w-96">
               <Image
                 src="/images/cover.jpg"
@@ -64,7 +87,7 @@ export default function Home() {
                 alt="Picture of the author"
               />
             </div>
-          </div>
+          </motion.div>
           {/* Content 2 */}
         </div>
         {/* Welcome */}
@@ -99,14 +122,19 @@ export default function Home() {
           {isLoading ? (
             <Loading size="lg" />
           ) : (
-            data?.map((article: any, i: any) => (
-              <ArticleCard
-                key={i}
-                title={article?.title}
-                slug={article?.slug}
-                desc="In the realm of technology blogging, captivating your audience goes beyond just the written word. Incorporating eye-catching CSS animations can elevate your content and provide a dynamic user…"
-              />
-            ))
+            data?.map((article: any, i: any) => {
+              const desc = getFirstParagraph(article);
+
+              return (
+                <ArticleCard
+                  key={i}
+                  title={article?.title}
+                  slug={article?.slug}
+                  desc={desc}
+                  userName={article?.User.name}
+                />
+              );
+            })
           )}
         </div>
         {/* Article List */}
@@ -122,6 +150,7 @@ export default function Home() {
             alt="Picture of the author"
           />
         </div>
+
         <p className="text-center text-sm text-white">
           &copy; 2024 tetespena. All Right Reserved
         </p>

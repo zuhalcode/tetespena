@@ -8,7 +8,10 @@ export async function GET(
   const { slug } = params;
 
   try {
-    const article = await db.article.findFirst({ where: { slug } });
+    const article = await db.article.findFirst({
+      where: { slug },
+      include: { User: true },
+    });
 
     return NextResponse.json({
       message: "Articles retrieved successfully",
