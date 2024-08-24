@@ -58,7 +58,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           className="shadow-[5px_10px_20px_rgba(0,0,0,0.3)] md:rounded-xl"
         />
 
-        <div className="space-y-5">
+        <div className="space-y-7">
           <h1 className="mx-auto max-w-52 text-center text-2xl font-bold capitalize leading-snug text-[#002050] sm:max-w-96 md:max-w-md md:text-3xl lg:max-w-3xl lg:text-4xl xl:max-w-2xl">
             {article?.title}
           </h1>
@@ -70,7 +70,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
             </Avatar>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-3">
+              <div className="mx-auto flex items-center gap-3">
                 <div className="items-center gap-1 sm:flex">
                   <span className="text-xs font-medium lg:text-sm">By </span>
                   <span className="w-96 cursor-pointer items-center gap-2 text-xs font-bold text-[#345Afa] transition-colors duration-100 hover:text-[#002050] sm:flex lg:text-sm lg:font-semibold">
@@ -94,7 +94,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       {/* Image Cover */}
 
       {/* Articles */}
-      <div className="tiptap-output mx-auto mt-10 w-full px-5 sm:mt-3 md:px-10 lg:px-16 xl:mt-10 xl:w-8/12 xl:px-0">
+      <div className="tiptap-output mx-auto mt-10 w-full px-5 sm:mt-3 md:px-10 lg:px-16 xl:mt-10 xl:w-7/12 xl:px-0">
         {isLoading ? <Loading /> : <TiptapRenderer />}
       </div>
       {/* Articles */}
