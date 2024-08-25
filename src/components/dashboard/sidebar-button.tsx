@@ -32,7 +32,7 @@ const SidebarButton = ({ text, icon, href, submenu = [] }: SidebarButton) => {
         <>
           <Link
             href={`${href}`}
-            className={`my-1 flex w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 capitalize text-slate-200 transition-all hover:bg-muted hover:text-primary`}
+            className={`my-1 flex w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 capitalize text-slate-200 transition-all hover:bg-slate-700 hover:text-slate-200`}
             onClick={handleSetActive}
           >
             <div className="flex items-center gap-3 font-semibold">
@@ -54,9 +54,9 @@ const SidebarButton = ({ text, icon, href, submenu = [] }: SidebarButton) => {
                   transition={{ duration: 0.3, delay: i * 0.1 }}
                   className={`my-1 ml-4 flex cursor-pointer items-center gap-3 rounded-lg transition-all duration-300 ${
                     pathname === sm.href
-                      ? "bg-muted text-primary"
-                      : "text-slate-300"
-                  } px-3 py-2 capitalize transition-all hover:bg-muted hover:text-primary`}
+                      ? "bg-slate-700 text-slate-200"
+                      : "text-slate-200"
+                  } px-3 py-2 capitalize transition-all hover:bg-slate-700 hover:text-slate-200`}
                 >
                   {sm.name}
                 </motion.div>
@@ -66,7 +66,7 @@ const SidebarButton = ({ text, icon, href, submenu = [] }: SidebarButton) => {
       ) : (
         <Link
           href={`${href}`}
-          className={`my-1 flex w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 capitalize text-slate-200 transition-all hover:bg-muted hover:text-primary`}
+          className={`my-1 flex w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 capitalize text-slate-200 transition-all hover:bg-slate-700 hover:text-slate-200`}
           onClick={handleSetActive}
         >
           <div className="flex w-full items-center gap-3 font-semibold">

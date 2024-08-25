@@ -68,13 +68,7 @@
   }
 }
 
-/* globals.css */
-
 /* For Chrome, Edge, and Safari */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 4px;
-}
 
 ::-webkit-scrollbar-thumb {
   background: #3d526e; /* Customize the color as needed */
@@ -86,13 +80,11 @@
 }
 
 .scroll-hidden::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  @apply h-0 w-0 xl:h-1 xl:w-1;
 }
 
-.custom-scroll::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+::-webkit-scrollbar {
+  @apply h-1 w-1;
 }
 
 /* Basic Tiptap editor styles */
