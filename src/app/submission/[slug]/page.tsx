@@ -20,8 +20,6 @@ import { useUser } from "@clerk/nextjs";
 
 import ProtectedPage from "@/components/auth/protected-page";
 import { useParams, useRouter } from "next/navigation";
-import { GetServerSideProps } from "next";
-import db from "@/lib/db";
 
 const Page = () => {
   useTitle("Create Article");
@@ -95,8 +93,8 @@ const Page = () => {
 
   useEffect(() => {
     if (!isLoading && data) {
-      if (data.userId !== user?.id) {
-        router.push("/dashboard");
+      if (user) {
+        if (data.userId !== user.id) router.push("/dashboard");
       }
     }
   }, [data, isLoading, router, user]);
@@ -109,7 +107,7 @@ const Page = () => {
             <ProfileBar useLogo />
 
             <div
-              className={`z-10 w-full overflow-auto bg-[#253142] py-5 xl:py-4`}
+              className={`z-10 mt-16 w-full overflow-auto bg-[#253142] py-5 xl:py-4`}
             >
               <div className="flex gap-3 pl-2 xl:pl-12">
                 <ToolbarHeading editor={editor} />

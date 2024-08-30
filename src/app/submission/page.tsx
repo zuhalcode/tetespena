@@ -88,7 +88,7 @@ const Page = () => {
             <ProfileBar useLogo />
 
             <div
-              className={`z-10 w-full overflow-auto bg-[#253142] py-5 xl:py-4`}
+              className={`z-10 mt-16 w-full overflow-auto bg-[#253142] py-5 xl:py-4`}
             >
               <div className="flex gap-3 pl-2 xl:pl-12">
                 <ToolbarHeading editor={editor} />

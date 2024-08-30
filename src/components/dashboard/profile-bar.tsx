@@ -11,7 +11,7 @@ type Props = {
 
 const ProfileBar = ({ useLogo = true }: Props) => {
   return (
-    <div className="fixed right-0 top-0 z-10 mx-auto h-fit w-full border-b border-b-slate-500 bg-[#1F2937] xl:right-7 xl:w-[76%]">
+    <div className="fixed right-0 top-0 z-10 mx-auto h-fit w-full border-b border-b-slate-500 bg-[#1d2633] xl:left-2 xl:right-2 xl:w-[98%]">
       <div className="flex w-full items-center justify-between px-3 py-2">
         <div className="lg:hidden">
           <SidebarDrawer />

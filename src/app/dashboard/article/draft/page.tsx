@@ -2,15 +2,7 @@
 
 import ArticleAction from "@/components/dashboard/article-action";
 import Loading from "@/components/loading";
-import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import {
   Table,
   TableBody,
@@ -23,7 +15,6 @@ import {
 import { useFetchArticlesByUserId } from "@/hooks/useArticles";
 import useTitle from "@/hooks/useTitle";
 import { useAuth } from "@clerk/nextjs";
-import { Ellipsis, User } from "lucide-react";
 
 export default function Page() {
   useTitle("Draft Articles");
@@ -68,7 +59,7 @@ export default function Page() {
                     {article.status}
                   </TableCell>
                   <TableCell className="font-medium">
-                    <ArticleAction />
+                    <ArticleAction slug={article.slug} />
                   </TableCell>
                 </TableRow>
               ))}

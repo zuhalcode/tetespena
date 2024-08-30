@@ -18,6 +18,7 @@ const Navbar = () => {
   const isAuthPage =
     pathname.startsWith("/sign-in") ||
     pathname.startsWith("/sign-up") ||
+    pathname.startsWith("/submission") ||
     pathname.startsWith("/dashboard");
 
   const router = useRouter();

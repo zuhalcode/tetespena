@@ -11,7 +11,7 @@ const useSaveUserData = () => {
         const { id, emailAddresses, fullName, firstName, lastName } = user;
 
         try {
-          const res = await axiosInstance.post("/api/user", {
+          const res = await axiosInstance.post("/api/users", {
             id,
             emailAddresses,
             fullName,
