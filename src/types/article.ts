@@ -17,8 +17,9 @@ export type CreateArticle = {
 };
 
 export type UpdateDraftArticle = {
-  id: string;
+  articleId: string | string[];
   content: JSONContent;
   title: string;
+  slug: string;
   userId: string;
 };

@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
 import useTitle from "@/hooks/useTitle";
-import { useFetchArticleBySlug, useUpdateArticle } from "@/hooks/useArticles";
+import { useFetchArticleById, useUpdateArticle } from "@/hooks/useArticles";
 import Loading from "@/components/loading";
 import { createToolbarButton, useTiptapEditor } from "@/hooks/useTiptapEditor";
 import { useUser } from "@clerk/nextjs";
@@ -25,10 +25,10 @@ const Page = () => {
   useTitle("Create Article");
 
   const { user } = useUser();
-  const { slug } = useParams();
+  const { articleId } = useParams();
   const router = useRouter();
 
-  const { data, isLoading } = useFetchArticleBySlug(slug);
+  const { data, isLoading } = useFetchArticleById(articleId);
   const content = data?.content;
 
   const [title, setTitle] = useState<string>("");
@@ -78,10 +78,10 @@ const Page = () => {
 
   const handleDraftContent = async () => {
     const content = editor?.getJSON()!;
-    const id = data?.id;
     const userId = user?.id!;
+    const slug = data?.slug;
 
-    mutate({ content, title, id, userId });
+    mutate({ content, title, articleId, slug, userId });
   };
 
   useEffect(() => {

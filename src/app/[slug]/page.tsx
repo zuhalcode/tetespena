@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import React, { useEffect, useState } from "react";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent } from "@tiptap/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useTitle from "@/hooks/useTitle";
 

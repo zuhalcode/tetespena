@@ -15,17 +15,14 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const { id, emailAddresses, fullName, firstName, lastName } =
-    await req.json();
-
-  const email = emailAddresses[0].emailAddress;
+  const { id, email, fullName, firstName, lastName } = await req.json();
 
   try {
     const userExist = await db.user.findFirst({ where: { id } });
 
     if (userExist)
       return NextResponse.json({
-        message: "User already exist",
+        message: "User already Registered",
       });
 
     const user = await db.user.create({

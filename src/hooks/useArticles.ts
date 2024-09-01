@@ -26,7 +26,9 @@ export const useFetchArticlesByUserId = (userId: string | null | undefined) => {
 export const useFetchArticleById = (id: string | string[]) => {
   return useQuery({
     queryFn: async () => {
-      const { data } = await axiosInstance.get(`/api/articles/${id}`);
+      const { data } = await axiosInstance.get(
+        `/api/articles/submission/${id}`,
+      );
       return data.data;
     },
     queryKey: ["fetch.articles", id],
@@ -71,8 +73,11 @@ export const useUpdateArticle = ({
 }) => {
   return useMutation<void, Error, UpdateDraftArticle>({
     mutationFn: async (data) => {
-      const { id } = data;
-      const response = await axiosInstance.patch(`/api/articles/${id}`, data);
+      const { userId, slug } = data;
+      const response = await axiosInstance.patch(
+        `/api/articles/${slug}/${userId}`,
+        data,
+      );
       return response.data;
     },
     onSuccess,

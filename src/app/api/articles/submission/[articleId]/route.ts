@@ -1,15 +1,15 @@
-import { NextResponse } from "next/server";
 import db from "@/lib/db";
+import { NextResponse } from "next/server";
 
 export async function GET(
   _: Request,
-  { params }: { params: { slug: string } },
+  { params }: { params: { articleId: string } },
 ) {
-  const { slug } = params;
+  const { articleId } = params;
 
   try {
     const article = await db.article.findFirst({
-      where: { slug },
+      where: { id: articleId },
       include: { User: true },
     });
 

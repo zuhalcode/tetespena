@@ -36,7 +36,7 @@ export default function Page() {
       ) : (
         <div className="pl-5 pr-3">
           <Table>
-            {data.length === 0 && (
+            {data?.length === 0 && (
               <TableCaption>
                 You haven&apos;t written any articles yet
               </TableCaption>
@@ -59,7 +59,7 @@ export default function Page() {
                     {article.status}
                   </TableCell>
                   <TableCell className="font-medium">
-                    <ArticleAction slug={article.slug} />
+                    <ArticleAction id={article.id} />
                   </TableCell>
                 </TableRow>
               ))}

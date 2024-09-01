@@ -1,20 +1,17 @@
 import { NextResponse } from "next/server";
 import db from "@/lib/db";
-import { JsonValue } from "@prisma/client/runtime/library";
-import { UpdateArticleDto } from "@/dto/article/update-article.dto";
 import { generateSlug } from "@/lib/slug";
 
 export async function PATCH(
   req: Request,
-  params: { slug: string; userId: string },
+  { params }: { params: { userId: string; slug: string } },
 ) {
-  const { content, title } = await req.json();
-  const { slug, userId } = params;
+  const { content, title, articleId } = await req.json();
+  const { userId } = params;
 
   try {
-    const existingArticle = await db.article.findFirst({
-      where: { slug },
-      include: { User: true },
+    const existingArticle = await db.article.findUniqueOrThrow({
+      where: { id: articleId },
     });
 
     if (!existingArticle) {
@@ -35,14 +32,24 @@ export async function PATCH(
     if (existingArticle.title !== title) {
       const updatedSlug = generateSlug(title);
       const updatedArticle = await db.article.update({
-        where: { slug },
-        data: { title, slug: updatedSlug },
+        where: { id: articleId },
+        data: { title, slug: updatedSlug, content },
+      });
+
+      return NextResponse.json({
+        message: "Articles retrieved successfully",
+        data: updatedArticle,
       });
     }
 
+    const updatedArticle = await db.article.update({
+      where: { id: articleId },
+      data: { title, content },
+    });
+
     return NextResponse.json({
       message: "Articles retrieved successfully",
-      //   article,
+      data: updatedArticle,
     });
   } catch (e) {
     console.error("Error reading file:", e);
