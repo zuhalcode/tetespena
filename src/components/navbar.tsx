@@ -62,16 +62,8 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center justify-center gap-5">
-        <div className="hidden xl:block">
-          {isSignedIn ? (
-            <Button>
-              <SignOutButton />
-            </Button>
-          ) : (
-            <Button>
-              <SignInButton />
-            </Button>
-          )}
+        <div className="hidden h-10 items-center justify-center whitespace-nowrap rounded-sm bg-blue-500 px-6 py-2 text-base font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 xl:block">
+          {isSignedIn ? <SignOutButton /> : <SignInButton />}
         </div>
         <Drawer />
       </div>

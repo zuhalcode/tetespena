@@ -24,17 +24,17 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <QueryClientProvider client={queryClient}>
-        <AnimatePresence>
-          <html lang="en">
-            <body className={`bg-slate-50`}>
+        <html lang="en">
+          <AnimatePresence>
+            <body className={`bg-slate-50`} suppressHydrationWarning>
               <main>
                 <Navbar />
                 {children}
               </main>
               <Toaster />
             </body>
-          </html>
-        </AnimatePresence>
+          </AnimatePresence>
+        </html>
       </QueryClientProvider>
     </ClerkProvider>
   );

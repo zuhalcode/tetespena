@@ -9,11 +9,12 @@ const useSaveUserData = () => {
     const saveUserData = async () => {
       if (user) {
         const { id, emailAddresses, fullName, firstName, lastName } = user;
+        const email = emailAddresses[0].emailAddress;
 
         try {
           const res = await axiosInstance.post("/api/users", {
             id,
-            emailAddresses,
+            email,
             fullName,
             firstName,
             lastName,

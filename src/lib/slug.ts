@@ -1,7 +1,7 @@
-export const generateNewSlug = (title: string) =>
+export const generateSlug = (title: string): string =>
   title
-    ?.toLowerCase() // Convert to lowercase
-    .trim() // Remove leading and trailing spaces
-    .replace(/[^\w\s]/g, "") // Remove non-word characters (except spaces)
-    .replace(/\s+/g, "-") // Replace spaces with hyphens
-    .replace(/-+/g, "-"); // Replace multiple hyphens with a single hyphen
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");

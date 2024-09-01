@@ -44,7 +44,7 @@ enum ArticleStatus {
 
 model Article {
   id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title      String    @db.VarChar(255)
+  title      String    @unique @db.VarChar(255)
   slug       String    @unique @db.VarChar(255)
   content    Json
   cover_img  String?   @db.VarChar(255)

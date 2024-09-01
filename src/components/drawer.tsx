@@ -14,11 +14,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { SignOutButton } from "@clerk/nextjs";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const Drawer = () => {
   const pathname = usePathname();
-  if (pathname === "/dashboard") return;
+
+  if (
+    pathname === "/dashboard" ||
+    pathname === "/sign-in" ||
+    pathname === "/sign-up"
+  )
+    return;
 
   const menu = [
     {

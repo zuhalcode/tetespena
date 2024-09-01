@@ -10,10 +10,10 @@ import { Edit, Ellipsis, FileInput, Trash, Trash2 } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
-  slug?: string;
+  id?: string;
 };
 
-const ArticleAction = ({ slug }: Props) => {
+const ArticleAction = ({ id }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -31,7 +31,11 @@ const ArticleAction = ({ slug }: Props) => {
             <span className="text-base">Publish Article</span>
           </DropdownMenuItem>
           <DropdownMenuItem className="rounded-lg bg-transparent py-2 text-slate-300 focus:bg-slate-800 focus:text-white">
-            <Link href={`/submission/${slug}`} className="flex items-center">
+            <Link
+              href={`/submission/${id}`}
+              target="_blank"
+              className="flex items-center"
+            >
               <Edit className="mr-2 h-5 w-5" />
               <span className="text-base">Edit Article</span>
             </Link>
