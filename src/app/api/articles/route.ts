@@ -30,9 +30,9 @@ export async function POST(req: Request) {
     });
 
     if (existingArticle)
-      return {
+      return NextResponse.json({
         message: "Article with same title is existing",
-      };
+      });
 
     const article = await db.article.create({
       data: { title: title.toLowerCase(), content, slug, userId, status },
@@ -48,9 +48,9 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Error saving article:", error);
 
-    return {
+    return NextResponse.json({
       message: "Article with same title is existing",
       errors: error,
-    };
+    });
   }
 }
