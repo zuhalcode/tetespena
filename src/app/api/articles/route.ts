@@ -44,7 +44,10 @@ export async function POST(req: Request) {
       },
     });
 
-    return { message: "Article created successfully", data: article };
+    return NextResponse.json({
+      message: "Article created successfully",
+      data: article,
+    });
   } catch (error) {
     console.error("Error saving article:", error);
 
