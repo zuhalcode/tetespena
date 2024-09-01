@@ -50,7 +50,7 @@ export async function POST(req: Request) {
 
     return {
       message: "Article with same title is existing",
-      errors: { error: [`${error}`] },
+      errors: error,
     };
   }
 }
