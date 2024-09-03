@@ -4,6 +4,14 @@ import TextAlign from "@tiptap/extension-text-align";
 import Underline from "@tiptap/extension-underline";
 import { Editor, JSONContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
+import css from "highlight.js/lib/languages/css";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import html from "highlight.js/lib/languages/xml";
+
+import { createLowlight } from "lowlight";
+
 import {
   AlignCenter,
   AlignJustify,
@@ -20,6 +28,14 @@ import {
   Strikethrough,
   Underline as U,
 } from "lucide-react";
+
+// create a lowlight instance with all languages loaded
+const lowlight = createLowlight();
+
+lowlight.register("html", html);
+lowlight.register("css", css);
+lowlight.register("js", js);
+lowlight.register("ts", ts);
 
 // define your extension array
 const extensions = [
@@ -43,6 +59,7 @@ const extensions = [
       return "Type your content here …";
     },
   }),
+  CodeBlockLowlight.configure({ lowlight }),
 ];
 
 export const createBubbleButton = (editor: Editor | null) => [
