@@ -13,13 +13,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useFetchArticlesUserByStatus } from "@/hooks/useArticles";
-import useTitle from "@/hooks/useTitle";
 import { Article } from "@/types/article";
 import { useAuth } from "@clerk/nextjs";
 
 export default function Page() {
-  useTitle("Draft Articles");
-
   const { userId } = useAuth();
   const { data, isLoading } = useFetchArticlesUserByStatus(userId, "DRAFT");
 

@@ -1,6 +1,5 @@
 "use client";
 
-import ArticleAction from "@/components/dashboard/article-action";
 import Loading from "@/components/loading";
 
 import {
@@ -13,12 +12,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useFetchArticlesUserByStatus } from "@/hooks/useArticles";
-import useTitle from "@/hooks/useTitle";
 import { useAuth } from "@clerk/nextjs";
 
 export default function Page() {
-  useTitle("Draft Articles");
-
   const { userId } = useAuth();
 
   const { data, isLoading } = useFetchArticlesUserByStatus(userId, "TRASHED");

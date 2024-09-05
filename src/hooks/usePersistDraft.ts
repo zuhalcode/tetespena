@@ -17,10 +17,10 @@ type DraftContext = "create" | "edit";
 const usePersistDraft = (context: DraftContext) => {
   const dispatch: AppDispatch = useDispatch();
 
-  const { title, content } = useSelector((state: RootState) =>
+  const { title, content, id } = useSelector((state: RootState) =>
     context === "create"
-      ? state.article.articleDraft
-      : state.article.editingDraft,
+      ? state.article.editingDraft
+      : state.article.articleDraft,
   );
 
   const draftKey = context === "create" ? "articleDraft" : "editingDraft";

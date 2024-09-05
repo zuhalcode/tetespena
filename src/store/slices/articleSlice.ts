@@ -1,14 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { JSONContent } from "@tiptap/react";
 
 type ArticleState = {
   articleDraft: { title?: string; content?: JSONContent };
-  editingDraft: { title?: string; content?: JSONContent };
+  editingDraft: { title?: string; content?: JSONContent; id?: string };
 };
 
 const initialState: ArticleState = {
   articleDraft: { title: "", content: {} },
-  editingDraft: { title: "", content: {} },
+  editingDraft: { title: "", content: {}, id: "" },
 };
 
 const articleSlice = createSlice({
@@ -29,7 +29,10 @@ const articleSlice = createSlice({
       state.editingDraft.title = action.payload;
     },
     setEditingDraftContent: (state, action) => {
-      state.editingDraft.title = action.payload;
+      state.editingDraft.content = action.payload;
+    },
+    setEditingDraftId: (state, action) => {
+      state.editingDraft.id = action.payload;
     },
     clearEditingDraft: (state) => {
       state.editingDraft = { title: "", content: {} };
@@ -44,6 +47,7 @@ export const {
   clearArticleDraft,
   setEditingDraftTitle,
   setEditingDraftContent,
+  setEditingDraftId,
   clearEditingDraft,
 } = articleSlice.actions;
 

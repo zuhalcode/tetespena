@@ -19,23 +19,35 @@ import { useUser } from "@clerk/nextjs";
 
 import ProtectedPage from "@/components/auth/protected-page";
 import { useParams, useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
+import {
+  setEditingDraftContent,
+  setEditingDraftId,
+  setEditingDraftTitle,
+} from "@/store/slices/articleSlice";
+
+import useSaveEditingDraft from "@/hooks/useSaveEditingDraft";
 
 const Page = () => {
-  // useTitle("Update Article");
+  useSaveEditingDraft();
 
   const { user } = useUser();
   const { articleId } = useParams();
   const router = useRouter();
 
+  const dispatch: AppDispatch = useDispatch();
+  const { title, content } = useSelector(
+    (state: RootState) => state.article.editingDraft,
+  );
+
+  const editor = useTiptapEditor({ context: "edit" });
+
   const { data, isLoading } = useFetchArticleById(articleId);
-  const content = data?.content;
 
-  const [title, setTitle] = useState<string>("");
   const handleSetTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    dispatch(setEditingDraftTitle(e.target.value));
   };
-
-  const editor = useTiptapEditor(content);
 
   const setLink = useCallback(() => {
     const previousUrl = editor?.getAttributes("link").href;
@@ -83,13 +95,36 @@ const Page = () => {
     mutate({ content, title, articleId, slug, userId });
   };
 
+  // Update editor content when content update
   useEffect(() => {
-    if (editor && data) {
-      editor.commands.setContent(data.content);
-      setTitle(data.title);
-    }
-  }, [editor, data]);
+    if (editor && content) editor.commands.setContent(content);
+  }, [editor, data, content]);
 
+  // Save article data from server to localstorage
+  useEffect(() => {
+    if (data) {
+      dispatch(setEditingDraftTitle(data.title));
+      dispatch(setEditingDraftContent(data.content));
+      dispatch(setEditingDraftId(data.id));
+    }
+  }, [data, dispatch]);
+
+  // Check local storage and load if editingDraft localstorage exist
+  useEffect(() => {
+    const localEditingDraft = localStorage.getItem("editingDraft");
+    if (localEditingDraft) {
+      const { title, content, id } = JSON.parse(localEditingDraft);
+      if (data) {
+        if (data.id === id) {
+          // load local editing Draft
+          dispatch(setEditingDraftTitle(title));
+          dispatch(setEditingDraftContent(content));
+        }
+      }
+    }
+  }, [data, dispatch]);
+
+  // Authorize user
   useEffect(() => {
     if (!isLoading && data) {
       if (user) {

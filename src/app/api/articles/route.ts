@@ -11,10 +11,13 @@ export async function GET() {
       data: articles,
     });
   } catch (e) {
-    return NextResponse.json({
-      error: e,
-      message: "Error Retrieving Articles",
-    });
+    return NextResponse.json(
+      {
+        error: e,
+        message: "Error Retrieving Articles",
+      },
+      { status: 500 },
+    );
   }
 }
 

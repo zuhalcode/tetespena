@@ -28,7 +28,6 @@ import {
 } from "@/store/slices/articleSlice";
 
 const Page = () => {
-  // useTitle("Create Article");
   usePersistDraft("create");
 
   const { user } = useUser();
