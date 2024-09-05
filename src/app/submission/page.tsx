@@ -23,10 +23,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 
 import {
-  setArticleDraftContent,
+  clearArticleDraft,
   setArticleDraftTitle,
 } from "@/store/slices/articleSlice";
 import useSaveArticleDraft from "@/hooks/useSaveArticleDraft";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   useSaveArticleDraft();
@@ -36,6 +37,8 @@ const Page = () => {
   const { title, content } = useSelector(
     (state: RootState) => state.article.articleDraft,
   );
+
+  const router = useRouter();
 
   const editor = useTiptapEditor({ context: "create" });
   const handleSetTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,15 +71,14 @@ const Page = () => {
 
   const { mutate, isPending } = useCreateArticle({
     onSuccess: () => {
+      editor?.commands.setContent("");
       toast("Draft Saved", {
         description: "Your content has been successfully saved.",
         duration: 1500,
       });
 
-      editor?.commands.setContent("");
-
-      dispatch(setArticleDraftTitle(""));
-      dispatch(setArticleDraftContent({}));
+      dispatch(clearArticleDraft());
+      localStorage.removeItem("articleDraft");
     },
 
     onError: () => {

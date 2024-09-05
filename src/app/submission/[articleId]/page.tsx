@@ -22,6 +22,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import {
+  clearEditingDraft,
   setEditingDraftContent,
   setEditingDraftId,
   setEditingDraftTitle,
@@ -79,6 +80,10 @@ const Page = () => {
         description: "Your content has been successfully saved.",
         duration: 1500,
       });
+
+      dispatch(clearEditingDraft());
+      localStorage.removeItem("editingDraft");
+      router.push("/dashboard/article/draft");
     },
     onError: () => {
       toast("Error", {

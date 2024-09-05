@@ -61,7 +61,7 @@ export async function PATCH(req: Request) {
       });
 
       return NextResponse.json({
-        message: "Articles retrieved successfully",
+        message: "Articles editred successfully",
         data: updatedArticle,
       });
     }
