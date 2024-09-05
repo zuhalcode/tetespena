@@ -5,7 +5,7 @@ import ProfileBar from "@/components/dashboard/profile-bar";
 import { EditorContent } from "@tiptap/react";
 
 import ToolbarButton from "@/components/submission/toolbar-button";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { ToolbarHeading } from "@/components/submission/toolbar-heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

@@ -21,14 +21,15 @@ import { ArticleStatus } from "@prisma/client";
 import ProtectedPage from "@/components/auth/protected-page";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
-import usePersistDraft from "@/hooks/usePersistDraft";
+
 import {
   setArticleDraftContent,
   setArticleDraftTitle,
 } from "@/store/slices/articleSlice";
+import useSaveArticleDraft from "@/hooks/useSaveArticleDraft";
 
 const Page = () => {
-  usePersistDraft("create");
+  useSaveArticleDraft();
 
   const { user } = useUser();
   const dispatch: AppDispatch = useDispatch();
