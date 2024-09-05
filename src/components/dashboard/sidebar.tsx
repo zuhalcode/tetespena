@@ -1,30 +1,10 @@
-import {
-  Home,
-  LayoutGrid,
-  LogOut,
-  Newspaper,
-  Sheet,
-  UserRoundPen,
-} from "lucide-react";
+import { Home, LogOut, Newspaper, UserRoundPen } from "lucide-react";
 import Link from "next/link";
 
 import SidebarButton from "./sidebar-button";
 import Image from "next/image";
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
-import {
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
 import { SignOutButton } from "@clerk/nextjs";
-import { Button } from "../ui/button";
-import { Label } from "../ui/label";
-import Drawer from "../drawer";
 
 type SubmenuProps = {
   name: string;
@@ -78,6 +58,10 @@ const menus: MenuProps[] = [
       {
         name: "draft",
         href: "/dashboard/article/draft",
+      },
+      {
+        name: "trash",
+        href: "/dashboard/article/trash",
       },
     ],
   },

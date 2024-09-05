@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 
 import { toast } from "sonner";
 
-import useTitle from "@/hooks/useTitle";
 import { useFetchArticleById, useUpdateArticle } from "@/hooks/useArticles";
 import Loading from "@/components/loading";
 import { createToolbarButton, useTiptapEditor } from "@/hooks/useTiptapEditor";
@@ -22,7 +21,7 @@ import ProtectedPage from "@/components/auth/protected-page";
 import { useParams, useRouter } from "next/navigation";
 
 const Page = () => {
-  useTitle("Create Article");
+  // useTitle("Update Article");
 
   const { user } = useUser();
   const { articleId } = useParams();

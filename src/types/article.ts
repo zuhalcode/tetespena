@@ -7,11 +7,12 @@ export type Article = {
   slug: string;
   content?: string;
   cover_img?: string;
+  status?: ArticleStatus;
 };
 
 export type CreateArticle = {
-  content: JSONContent;
-  title: string;
+  content: JSONContent | undefined;
+  title: string | undefined;
   userId: string;
   status: ArticleStatus;
 };
@@ -19,7 +20,13 @@ export type CreateArticle = {
 export type UpdateDraftArticle = {
   articleId: string | string[];
   content: JSONContent;
-  title: string;
+  title: string | undefined;
   slug: string;
   userId: string;
+};
+
+export type SoftDeleteArticle = {
+  status: ArticleStatus;
+  slug: string | undefined;
+  userId: string | undefined;
 };

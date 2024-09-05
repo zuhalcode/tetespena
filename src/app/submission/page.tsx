@@ -5,14 +5,13 @@ import ProfileBar from "@/components/dashboard/profile-bar";
 import { EditorContent } from "@tiptap/react";
 
 import ToolbarButton from "@/components/submission/toolbar-button";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { ToolbarHeading } from "@/components/submission/toolbar-heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { toast } from "sonner";
 
-import useTitle from "@/hooks/useTitle";
 import { useCreateArticle } from "@/hooks/useArticles";
 import Loading from "@/components/loading";
 import { createToolbarButton, useTiptapEditor } from "@/hooks/useTiptapEditor";
@@ -20,18 +19,29 @@ import { useUser } from "@clerk/nextjs";
 
 import { ArticleStatus } from "@prisma/client";
 import ProtectedPage from "@/components/auth/protected-page";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
+import usePersistDraft from "@/hooks/usePersistDraft";
+import {
+  setArticleDraftContent,
+  setArticleDraftTitle,
+} from "@/store/slices/articleSlice";
 
 const Page = () => {
-  useTitle("Create Article");
+  // useTitle("Create Article");
+  usePersistDraft("create");
 
   const { user } = useUser();
+  const dispatch: AppDispatch = useDispatch();
+  const { title, content } = useSelector(
+    (state: RootState) => state.article.articleDraft,
+  );
 
-  const [title, setTitle] = useState<string>("");
+  const editor = useTiptapEditor({ context: "create" });
   const handleSetTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    dispatch(setArticleDraftTitle(e.target.value));
   };
 
-  const editor = useTiptapEditor();
   const setLink = useCallback(() => {
     const previousUrl = editor?.getAttributes("link").href;
     const url = window.prompt("URL", previousUrl);
@@ -62,23 +72,42 @@ const Page = () => {
         description: "Your content has been successfully saved.",
         duration: 1500,
       });
-      setTitle("");
+
       editor?.commands.setContent("");
+
+      dispatch(setArticleDraftTitle(""));
+      dispatch(setArticleDraftContent({}));
     },
+
     onError: () => {
-      toast("Error", {
-        description: "There was an issue saving your content.",
+      toast("Failed Saving Draft", {
+        description:
+          "This title is already taken. Please choose a different title for your article.",
+        duration: 3000,
       });
     },
   });
 
   const handleDraftContent = async () => {
-    const content = editor?.getJSON()!;
+    if (!title) {
+      toast("Failed to save draft", {
+        description: "Title cannot be empty",
+        duration: 2000,
+      });
+
+      return;
+    }
+
     const userId = user?.id!;
     const status: ArticleStatus = "DRAFT";
 
     mutate({ content, title, userId, status });
   };
+
+  // Update editor content when content changes
+  useEffect(() => {
+    if (editor && content) editor.commands.setContent(content);
+  }, [content, editor]);
 
   return (
     <ProtectedPage>

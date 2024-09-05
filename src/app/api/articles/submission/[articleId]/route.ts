@@ -1,6 +1,8 @@
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
+// Retrieve data Article for editing spesific article by current user
+// used for /submission/{articleId} in client
 export async function GET(
   _: Request,
   { params }: { params: { articleId: string } },

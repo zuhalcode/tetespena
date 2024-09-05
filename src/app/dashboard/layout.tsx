@@ -3,7 +3,6 @@
 import ProtectedPage from "@/components/auth/protected-page";
 import ProfileBar from "@/components/dashboard/profile-bar";
 import { Sidebar } from "@/components/dashboard/sidebar";
-import SidebarDrawer from "@/components/dashboard/sidebar-drawer";
 
 export default function DashboardLayout({
   children,

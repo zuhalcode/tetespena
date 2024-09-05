@@ -3,17 +3,13 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
 import { Home, Menu, Newspaper, UserRoundPen, X } from "lucide-react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 
-import Link from "next/link";
-import { Button } from "../ui/button";
 import SidebarButton from "./sidebar-button";
 
 const SidebarDrawer = () => {
@@ -69,6 +65,10 @@ const SidebarDrawer = () => {
         {
           name: "draft",
           href: "/dashboard/article/draft",
+        },
+        {
+          name: "trash",
+          href: "/dashboard/article/trash",
         },
       ],
     },

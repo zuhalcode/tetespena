@@ -20,7 +20,7 @@ const ProfileBar = ({ useLogo = true }: Props) => {
         {/* Logo */}
         <div className="w-12 pb-2 xl:w-12 xl:pb-0">
           {useLogo && (
-            <Link href="/dashboard" className="lg:hidden">
+            <Link href="/dashboard">
               <Image
                 src="/images/tp.png"
                 width={100}

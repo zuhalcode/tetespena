@@ -1,6 +1,5 @@
 import db from "@/lib/db";
 import { generateSlug } from "@/lib/slug";
-
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -30,9 +29,12 @@ export async function POST(req: Request) {
     });
 
     if (existingArticle)
-      return NextResponse.json({
-        message: "Article with same title is existing",
-      });
+      return NextResponse.json(
+        {
+          message: "Article with same title is existing",
+        },
+        { status: 409 },
+      );
 
     const article = await db.article.create({
       data: { title: title.toLowerCase(), content, slug, userId, status },

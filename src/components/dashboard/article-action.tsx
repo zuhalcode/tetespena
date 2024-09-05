@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,12 +8,32 @@ import {
 } from "../ui/dropdown-menu";
 import { Edit, Ellipsis, FileInput, Trash, Trash2 } from "lucide-react";
 import Link from "next/link";
+import { useSoftDeleteArticle } from "@/hooks/useArticles";
+import { toast } from "sonner";
+import { useUser } from "@clerk/nextjs";
 
 type Props = {
   id?: string;
+  slug?: string | undefined;
 };
 
-const ArticleAction = ({ id }: Props) => {
+const ArticleAction = ({ id, slug }: Props) => {
+  const { user } = useUser();
+  const userId = user?.id;
+
+  const { mutate } = useSoftDeleteArticle({
+    onSuccess: () => {
+      toast("anjays");
+    },
+    onError: () => {
+      toast("anjays");
+    },
+  });
+
+  const handleTrashButton = (slug: string | undefined) => {
+    mutate({ slug, status: "TRASHED", userId });
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -42,7 +62,9 @@ const ArticleAction = ({ id }: Props) => {
           </DropdownMenuItem>
           <DropdownMenuItem className="rounded-lg bg-transparent py-2 text-slate-300 focus:bg-slate-800 focus:text-white">
             <Trash2 className="mr-2 h-5 w-5" />
-            <span className="text-base">Move to Trash</span>
+            <span className="text-base" onClick={() => handleTrashButton(slug)}>
+              Move to Trash
+            </span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

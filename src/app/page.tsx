@@ -3,7 +3,6 @@
 import ArticleCard from "@/components/home/ArticleCard";
 import { Button } from "@/components/ui/button";
 
-import useTitle from "@/hooks/useTitle";
 import Image from "next/image";
 
 import { useFetchArticles } from "@/hooks/useArticles";
@@ -14,7 +13,6 @@ import useSaveUserData from "@/hooks/useUser";
 import Link from "next/link";
 
 export default function Home() {
-  useTitle("Home");
   useSaveUserData();
 
   const { data, isLoading } = useFetchArticles();

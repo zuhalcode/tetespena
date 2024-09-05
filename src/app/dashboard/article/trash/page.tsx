@@ -14,21 +14,22 @@ import {
 } from "@/components/ui/table";
 import { useFetchArticlesUserByStatus } from "@/hooks/useArticles";
 import useTitle from "@/hooks/useTitle";
-import { Article } from "@/types/article";
 import { useAuth } from "@clerk/nextjs";
 
 export default function Page() {
   useTitle("Draft Articles");
 
   const { userId } = useAuth();
-  const { data, isLoading } = useFetchArticlesUserByStatus(userId, "DRAFT");
+
+  const { data, isLoading } = useFetchArticlesUserByStatus(userId, "TRASHED");
 
   return (
     <div className="space-y-8 pb-16 pt-5 text-white xl:px-16 xl:pt-10">
       <div className="space-y-3 px-8">
-        <p className="text-xl font-semibold">Draft Articles</p>
+        <p className="text-xl font-semibold">Trashed Articles</p>
         <p className="text-sm text-slate-400">
-          A list of your article. Review some before publish.
+          Here you can review articles that have been moved to the trash. You
+          can restore or permanently delete them from this list.
         </p>
       </div>
 
@@ -38,9 +39,7 @@ export default function Page() {
         <div className="pl-5 pr-3">
           <Table>
             {data?.length === 0 && (
-              <TableCaption>
-                You haven&apos;t written any articles yet
-              </TableCaption>
+              <TableCaption>No trashed article found</TableCaption>
             )}
 
             <TableHeader>
@@ -50,7 +49,7 @@ export default function Page() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data?.map((article: Article) => (
+              {data?.map((article: any) => (
                 <TableRow key={article.id}>
                   <TableCell className="font-medium capitalize text-slate-200">
                     {article.title}
@@ -58,9 +57,6 @@ export default function Page() {
 
                   <TableCell className="font-medium text-slate-200">
                     {article.status}
-                  </TableCell>
-                  <TableCell className="font-medium">
-                    <ArticleAction slug={article.slug} id={article.id} />
                   </TableCell>
                 </TableRow>
               ))}

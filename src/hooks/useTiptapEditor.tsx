@@ -28,6 +28,11 @@ import {
   Strikethrough,
   Underline as U,
 } from "lucide-react";
+import { useDispatch } from "react-redux";
+import {
+  setArticleDraftContent,
+  setEditingDraftContent,
+} from "@/store/slices/articleSlice";
 
 // create a lowlight instance with all languages loaded
 const lowlight = createLowlight();
@@ -161,10 +166,19 @@ export const createToolbarButton = (
   },
 ];
 
-export const useTiptapEditor = (
-  content?: JSONContent,
-  editable: boolean = true,
-) => {
+type TipTapEditor = {
+  context?: "create" | "edit";
+  content?: JSONContent;
+  editable?: boolean;
+};
+
+export const useTiptapEditor = ({
+  context = "create",
+  content,
+  editable = true,
+}: TipTapEditor) => {
+  const dispatch = useDispatch();
+
   return useEditor({
     extensions,
     editorProps: {
@@ -173,7 +187,14 @@ export const useTiptapEditor = (
       },
     },
     immediatelyRender: false,
-    editable,
     content: content || null,
+    editable,
+    onUpdate: ({ editor }) => {
+      if (context === "create") {
+        dispatch(setArticleDraftContent(editor.getJSON()));
+      } else {
+        dispatch(setEditingDraftContent(editor.getJSON()));
+      }
+    },
   });
 };

@@ -1,5 +1,10 @@
 import { axiosInstance } from "@/lib/axios";
-import { CreateArticle, UpdateDraftArticle } from "@/types/article";
+import {
+  CreateArticle,
+  SoftDeleteArticle,
+  UpdateDraftArticle,
+} from "@/types/article";
+import { ArticleStatus } from "@prisma/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useFetchArticles = () => {
@@ -23,6 +28,23 @@ export const useFetchArticlesByUserId = (userId: string | null | undefined) => {
   });
 };
 
+export const useFetchArticlesUserByStatus = (
+  userId: string | null | undefined,
+  status: ArticleStatus,
+) => {
+  return useQuery({
+    queryFn: async () => {
+      const queryParams = status ? `?status=${status}` : "";
+      const { data } = await axiosInstance.get(
+        `/api/articles/users/${userId}${queryParams}`,
+      );
+      return data.data;
+    },
+    queryKey: ["fetch.articles", userId],
+    enabled: !!userId,
+  });
+};
+
 export const useFetchArticleById = (id: string | string[]) => {
   return useQuery({
     queryFn: async () => {
@@ -31,7 +53,7 @@ export const useFetchArticleById = (id: string | string[]) => {
       );
       return data.data;
     },
-    queryKey: ["fetch.articles", id],
+    queryKey: ["fetch.article", id],
     enabled: !!id,
   });
 };
@@ -42,7 +64,7 @@ export const useFetchArticleBySlug = (slug: string | string[]) => {
       const { data } = await axiosInstance.get(`/api/articles/${slug}`);
       return data.data;
     },
-    queryKey: ["fetch.articles", slug],
+    queryKey: ["fetch.article", slug],
     enabled: !!slug,
   });
 };
@@ -76,6 +98,27 @@ export const useUpdateArticle = ({
       const { userId, slug } = data;
       const response = await axiosInstance.patch(
         `/api/articles/${slug}/${userId}`,
+        data,
+      );
+      return response.data;
+    },
+    onSuccess,
+    onError,
+  });
+};
+
+export const useSoftDeleteArticle = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess: () => void;
+  onError: () => void;
+}) => {
+  return useMutation<void, Error, SoftDeleteArticle>({
+    mutationFn: async (data) => {
+      const { slug } = data;
+      const response = await axiosInstance.patch(
+        `/api/articles/${slug}/soft-delete`,
         data,
       );
       return response.data;
