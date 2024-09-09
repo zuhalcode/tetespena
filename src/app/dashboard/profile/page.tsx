@@ -16,7 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import useTitle from "@/hooks/useTitle";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -42,8 +41,6 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 const Page = () => {
-  useTitle("Profile | General");
-
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
@@ -51,6 +48,10 @@ const Page = () => {
   const { handleSubmit, control } = form;
 
   const handleOnSubmit = handleSubmit((values) => alert(values.name));
+
+  useEffect(() => {
+    document.title = "Profile | General";
+  }, []);
 
   return (
     <div className="space-y-8 px-16 pb-16 pt-10 text-white">
