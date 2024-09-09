@@ -25,6 +25,8 @@ const useSaveArticleDraft = () => {
       localStorage.setItem(draftKey, JSON.stringify(draft));
 
       toast("Draft Saved Locally", {
+        style: { height: 50, fontSize: 10 },
+
         description:
           "Press saved draft button to store your progress permanently",
         duration: 3000,

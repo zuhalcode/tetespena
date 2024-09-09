@@ -17,7 +17,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import useTitle from "@/hooks/useTitle";
 
 const formSchema = z
   .object({
@@ -49,8 +48,6 @@ const formSchema = z
 type FormSchema = z.infer<typeof formSchema>;
 
 const Page = () => {
-  useTitle("Profile | Password");
-
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });

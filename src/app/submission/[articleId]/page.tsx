@@ -138,6 +138,10 @@ const Page = () => {
     }
   }, [data, isLoading, router, user]);
 
+  useEffect(() => {
+    document.title = "Edit Article";
+  }, []);
+
   return (
     <ProtectedPage>
       <div className="flex bg-[#1d2633]">

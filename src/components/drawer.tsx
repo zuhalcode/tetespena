@@ -13,11 +13,12 @@ import Image from "next/image";
 
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { SignOutButton } from "@clerk/nextjs";
+import { SignOutButton, useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 
 const Drawer = () => {
   const pathname = usePathname();
+  const { user } = useUser();
 
   if (
     pathname === "/dashboard" ||
@@ -78,11 +79,13 @@ const Drawer = () => {
         </SheetHeader>
 
         <SheetHeader>
-          <SignOutButton>
-            <Button variant="destructive" className="mt-24">
-              Logout
-            </Button>
-          </SignOutButton>
+          {user && (
+            <SignOutButton>
+              <Button variant="destructive" className="mt-24">
+                Logout
+              </Button>
+            </SignOutButton>
+          )}
         </SheetHeader>
       </SheetContent>
     </Sheet>

@@ -30,3 +30,9 @@ export type SoftDeleteArticle = {
   slug: string | undefined;
   userId: string | undefined;
 };
+
+export type PublishArticle = {
+  status: ArticleStatus;
+  slug: string | undefined;
+  userId: string | undefined;
+};

@@ -33,6 +33,7 @@ import {
   setArticleDraftContent,
   setEditingDraftContent,
 } from "@/store/slices/articleSlice";
+import debounce from "lodash.debounce";
 
 // create a lowlight instance with all languages loaded
 const lowlight = createLowlight();
@@ -189,12 +190,12 @@ export const useTiptapEditor = ({
     immediatelyRender: false,
     content: content || null,
     editable,
-    onUpdate: ({ editor }) => {
+    onUpdate: debounce(({ editor }) => {
       if (context === "create") {
         dispatch(setArticleDraftContent(editor.getJSON()));
       } else {
         dispatch(setEditingDraftContent(editor.getJSON()));
       }
-    },
+    }, 5000),
   });
 };

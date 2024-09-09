@@ -18,7 +18,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import useTitle from "@/hooks/useTitle";
 
 const formSchema = z.object({
   youtube: z.string().optional(),
@@ -53,8 +52,6 @@ const socials: SocialProps[] = [
 ];
 
 const Page = () => {
-  useTitle("Profile | Socials");
-
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });

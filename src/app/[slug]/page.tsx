@@ -5,7 +5,6 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { EditorContent } from "@tiptap/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import useTitle from "@/hooks/useTitle";
 
 import { BookOpen } from "lucide-react";
 import { useFetchArticleBySlug } from "@/hooks/useArticles";
@@ -16,7 +15,6 @@ const Page = ({ params }: { params: { slug: string } }) => {
   const [title, setTitle] = useState<string>();
   const [content, setContent] = useState();
 
-  useTitle(title || "Home");
   const slug = params?.slug;
 
   const { data: article, isLoading } = useFetchArticleBySlug(slug);
@@ -30,6 +28,10 @@ const Page = ({ params }: { params: { slug: string } }) => {
     }
   }, [article]);
 
+  useEffect(() => {
+    if (title) document.title = title;
+  }, [title]);
+
   const createdAtDate = new Date(article?.created_at).toLocaleDateString(
     "en-GB",
     {
@@ -40,8 +42,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
   );
 
   const TiptapRenderer = () => {
-    const editor = useTiptapEditor(content, false);
-
+    const editor = useTiptapEditor({ content, editable: false });
     return <EditorContent editor={editor} />;
   };
 

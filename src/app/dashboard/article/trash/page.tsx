@@ -13,11 +13,16 @@ import {
 } from "@/components/ui/table";
 import { useFetchArticlesUserByStatus } from "@/hooks/useArticles";
 import { useAuth } from "@clerk/nextjs";
+import { useEffect } from "react";
 
 export default function Page() {
   const { userId } = useAuth();
 
   const { data, isLoading } = useFetchArticlesUserByStatus(userId, "TRASHED");
+
+  useEffect(() => {
+    document.title = "Trashed Article";
+  }, []);
 
   return (
     <div className="space-y-8 pb-16 pt-5 text-white xl:px-16 xl:pt-10">

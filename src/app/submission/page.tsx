@@ -27,7 +27,8 @@ import {
   setArticleDraftTitle,
 } from "@/store/slices/articleSlice";
 import useSaveArticleDraft from "@/hooks/useSaveArticleDraft";
-import { useRouter } from "next/navigation";
+
+import AiButton from "@/components/submission/ai-button";
 
 const Page = () => {
   useSaveArticleDraft();
@@ -37,8 +38,6 @@ const Page = () => {
   const { title, content } = useSelector(
     (state: RootState) => state.article.articleDraft,
   );
-
-  const router = useRouter();
 
   const editor = useTiptapEditor({ context: "create" });
   const handleSetTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,6 +110,10 @@ const Page = () => {
     if (editor && content) editor.commands.setContent(content);
   }, [content, editor]);
 
+  useEffect(() => {
+    document.title = "Create Article";
+  }, []);
+
   return (
     <ProtectedPage>
       <div className="flex bg-[#1d2633]">
@@ -122,6 +125,8 @@ const Page = () => {
               className={`z-10 mt-16 w-full overflow-auto bg-[#253142] py-5 xl:py-4`}
             >
               <div className="flex gap-3 pl-2 xl:pl-12">
+                <AiButton />
+
                 <ToolbarHeading editor={editor} />
 
                 {toolbarButtons.map((btn, i) => (

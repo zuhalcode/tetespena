@@ -104,6 +104,27 @@ export const useUpdateArticle = ({
   });
 };
 
+export const usePublishArticle = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess: () => void;
+  onError: () => void;
+}) => {
+  return useMutation<void, Error, SoftDeleteArticle>({
+    mutationFn: async (data) => {
+      const { slug } = data;
+      const response = await axiosInstance.patch(
+        `/api/articles/${slug}/publish`,
+        data,
+      );
+      return response.data;
+    },
+    onSuccess,
+    onError,
+  });
+};
+
 export const useSoftDeleteArticle = ({
   onSuccess,
   onError,

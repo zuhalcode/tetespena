@@ -15,10 +15,22 @@ import {
 import { useFetchArticlesUserByStatus } from "@/hooks/useArticles";
 import { Article } from "@/types/article";
 import { useAuth } from "@clerk/nextjs";
+import { useEffect } from "react";
 
 export default function Page() {
   const { userId } = useAuth();
   const { data, isLoading } = useFetchArticlesUserByStatus(userId, "DRAFT");
+
+  useEffect(() => {
+    document.title = "Draft Article";
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      // Any logic you need when data changes, like triggering a UI re-render
+      console.log("Data has changed:", data);
+    }
+  }, [data]);
 
   return (
     <div className="space-y-8 pb-16 pt-5 text-white xl:px-16 xl:pt-10">

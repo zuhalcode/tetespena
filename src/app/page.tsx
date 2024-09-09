@@ -11,6 +11,7 @@ import Loading from "@/components/loading";
 import { motion } from "framer-motion";
 import useSaveUserData from "@/hooks/useUser";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Home() {
   useSaveUserData();
@@ -33,6 +34,10 @@ export default function Home() {
 
     return null; // Jika tidak ditemukan paragraph
   };
+
+  useEffect(() => {
+    document.title = "Home";
+  }, []);
 
   return (
     <>
