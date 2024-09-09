@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -55,6 +55,10 @@ const Page = () => {
   const { handleSubmit, control } = form;
 
   const handleOnSubmit = handleSubmit((values) => alert(values));
+
+  useEffect(() => {
+    document.title = 'Profile | Password'
+  }, []);
 
   return (
     <div className="space-y-8 px-16 pb-16 pt-10 text-white">
