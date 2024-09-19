@@ -173,13 +173,7 @@ type TipTapEditor = {
   editable?: boolean;
 };
 
-export const useTiptapEditor = ({
-  context = "create",
-  content,
-  editable = true,
-}: TipTapEditor) => {
-  const dispatch = useDispatch();
-
+export const useTiptapEditor = ({ content, editable = true }: TipTapEditor) => {
   return useEditor({
     extensions,
     editorProps: {
@@ -190,12 +184,5 @@ export const useTiptapEditor = ({
     immediatelyRender: false,
     content: content || null,
     editable,
-    onUpdate: debounce(({ editor }) => {
-      if (context === "create") {
-        dispatch(setArticleDraftContent(editor.getJSON()));
-      } else {
-        dispatch(setEditingDraftContent(editor.getJSON()));
-      }
-    }, 5000),
   });
 };

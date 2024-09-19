@@ -6,9 +6,8 @@ import {
   setArticleDraftContent,
   setArticleDraftTitle,
 } from "@/store/slices/articleSlice";
-import { toast } from "sonner";
 
-const DEBOUNCE_DELAY = 5000; // or your desired debounce delay
+const DEBOUNCE_DELAY = 100; // or your desired debounce delay
 
 const useSaveArticleDraft = () => {
   const dispatch = useDispatch();
@@ -23,14 +22,6 @@ const useSaveArticleDraft = () => {
     const debouncedSaveDraft = debounce(() => {
       const draft = { title, content };
       localStorage.setItem(draftKey, JSON.stringify(draft));
-
-      toast("Draft Saved Locally", {
-        style: { height: 50, fontSize: 10 },
-
-        description:
-          "Press saved draft button to store your progress permanently",
-        duration: 3000,
-      });
     }, DEBOUNCE_DELAY);
 
     // Call debouncedSaveDraft whenever title or content changes

@@ -2,14 +2,13 @@ import { useEffect } from "react";
 import debounce from "lodash.debounce";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store"; // Adjust the import according to your file structure
-import { toast } from "sonner";
 import {
   setEditingDraftContent,
   setEditingDraftId,
   setEditingDraftTitle,
 } from "@/store/slices/articleSlice";
 
-const DEBOUNCE_DELAY = 5000; // or your desired debounce delay
+const DEBOUNCE_DELAY = 100; // or your desired debounce delay
 
 const useSaveEditingDraft = () => {
   const dispatch = useDispatch();
@@ -24,12 +23,6 @@ const useSaveEditingDraft = () => {
     const debouncedSaveDraft = debounce(() => {
       const draft = { title, content, id };
       localStorage.setItem(draftKey, JSON.stringify(draft));
-
-      toast("Draft Saved Locally", {
-        description:
-          "Press saved draft button to store your progress permanently",
-        duration: 3000,
-      });
     }, DEBOUNCE_DELAY);
 
     // Call debouncedSaveDraft whenever title, content, or id changes

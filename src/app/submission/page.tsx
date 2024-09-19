@@ -24,6 +24,7 @@ import { AppDispatch, RootState } from "@/store";
 
 import {
   clearArticleDraft,
+  setArticleDraftContent,
   setArticleDraftTitle,
 } from "@/store/slices/articleSlice";
 import useSaveArticleDraft from "@/hooks/useSaveArticleDraft";
@@ -104,6 +105,19 @@ const Page = () => {
 
     mutate({ content, title, userId, status });
   };
+
+  // Update the localStorage ArticleDraft Content
+  useEffect(() => {
+    const handleUpdate = () => {
+      dispatch(setArticleDraftContent(editor?.getJSON()));
+    };
+
+    if (editor) editor.on("update", handleUpdate);
+
+    return () => {
+      if (editor) editor.off("update", handleUpdate);
+    };
+  }, [editor, dispatch]);
 
   // Update editor content when content changes
   useEffect(() => {
