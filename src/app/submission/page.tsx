@@ -106,19 +106,6 @@ const Page = () => {
     mutate({ content, title, userId, status });
   };
 
-  // Update the localStorage ArticleDraft Content
-  useEffect(() => {
-    const handleUpdate = () => {
-      dispatch(setArticleDraftContent(editor?.getJSON()));
-    };
-
-    if (editor) editor.on("update", handleUpdate);
-
-    return () => {
-      if (editor) editor.off("update", handleUpdate);
-    };
-  }, [editor, dispatch]);
-
   // Update editor content when content changes
   useEffect(() => {
     if (editor && content) editor.commands.setContent(content);

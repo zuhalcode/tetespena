@@ -6,8 +6,9 @@ import {
   setArticleDraftContent,
   setArticleDraftTitle,
 } from "@/store/slices/articleSlice";
+import { toast } from "sonner";
 
-const DEBOUNCE_DELAY = 100; // or your desired debounce delay
+const DEBOUNCE_DELAY = 10000; // or your desired debounce delay
 
 const useSaveArticleDraft = () => {
   const dispatch = useDispatch();

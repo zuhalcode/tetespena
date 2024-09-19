@@ -8,7 +8,7 @@ import {
   setEditingDraftTitle,
 } from "@/store/slices/articleSlice";
 
-const DEBOUNCE_DELAY = 100; // or your desired debounce delay
+const DEBOUNCE_DELAY = 10000; // or your desired debounce delay
 
 const useSaveEditingDraft = () => {
   const dispatch = useDispatch();
